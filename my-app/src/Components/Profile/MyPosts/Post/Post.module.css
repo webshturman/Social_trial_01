@@ -1,0 +1,14 @@
+.newpost{
+    color: mediumpurple;
+    display: flex;
+    margin-bottom: 20px;
+}
+.newpost img{
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    margin: 0 10px 0 0;
+}
+.likes {
+    text-align: right;
+}

@@ -1,0 +1,26 @@
+.nav{
+    grid-area: n;
+    background-color: #90caf9;
+
+    font-size: 18px;
+    line-height: 30px;
+    padding: 10px 0 0 10px;
+}
+.item a{
+    color: white;
+    text-decoration: none;
+}
+.item a.active {
+    color: grey;
+    /*text-decoration: underline;*/
+}
+.item a:hover{
+    color: black;
+    text-decoration: underline;
+    cursor:pointer;
+}
+/*.active{*/
+/*    text-decoration: underline ;*/
+/*}*/
+
+/*{`${s.item} ${s.active}`}*/

@@ -1,0 +1,30 @@
+.dialogs {
+    padding: 10px 0;
+    font-weight: 400;
+    display: flex;
+    color: darkblue;
+}
+
+.item{
+
+    padding-left: 40px;
+}
+.senders{
+    margin:0;
+    border-right: 2px solid darkgrey;
+    list-style: none;
+    flex:0 1 30%;
+}
+.active{
+    color: black;
+    font-weight: 500;
+}
+.senderAva{
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    margin: 0 10px 10px 0;
+}
+.senderInfo{
+    display: flex;
+}
