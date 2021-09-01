@@ -13,7 +13,6 @@ import state from "./Components/redux/state";
 
 //------------------------------------------------------------------------------------
 export const App = () => {
-    debugger
     const dialogsBlock = ()=> <Dialogs/>
     const profileBlock = ()=> <Profile/>
   return (
