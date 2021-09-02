@@ -4,6 +4,7 @@
 .background{
     width: 100%;
     height: 200px;
+    border-radius: 5px;
     background: url("https://mythemestore.com/beehive-preview/wp-content/uploads/buddypress/groups/4/cover-image/5e2cc36891950-bp-cover-image.jpg");
 }
 .info{

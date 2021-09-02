@@ -1,7 +1,7 @@
 import s from "../Profile.module.css";
 import React from "react";
 
-export const ProfileInfo: React.FC = () => {
+export const ProfileInfo = () => {
     return (
         <div>
             <div className={s.background}>

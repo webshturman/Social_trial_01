@@ -1,8 +1,10 @@
 
 import {v1} from "uuid";
+import {rerenderEntireTree} from "../../render";
+
 
 //----------------------------------------------------------------------------
-type RootStateType = {
+export type RootStateType = {
     dialogPage: DialogPageType
     profilePage: ProfilePageType
 }
@@ -29,7 +31,7 @@ type PostType = {
     likecounts: number
 }
 //-----------------------------------------------------------------------------
- let state: RootStateType = {
+let state: RootStateType = {
     dialogPage: {
         sender: [
             {id:v1(), name: 'Andrey', avatar:'https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/14/5e2d01291b6b9-bpthumb.jpg'},
@@ -52,18 +54,29 @@ type PostType = {
        post: [
             {
                 id:v1(),
-                avatar: "https://klike.net/uploads/posts/2019-03/1551511784_4.jpg",
+                avatar: "https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/6/5e2cccd55f95b-bpthumb.jpg",
                 message: 'Hello my friend',
                 likecounts:15
             },
             {
                 id:v1(),
-                avatar: "https://klike.net/uploads/posts/2019-03/1551511784_4.jpg",
+                avatar: "https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/12/5e2cfd5d1d7c0-bpthumb.jpg",
                 message: 'Nice to see you again',
                 likecounts:20
             },
         ]
+    },
+
+}
+export const addPost = (message:string) => {
+    let newPost: PostType ={
+        id:v1(),
+        avatar: "https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/12/5e2cfd5d1d7c0-bpthumb.jpg",
+        message: message,
+        likecounts:0
     }
+    state.profilePage.post.push(newPost);
+    rerenderEntireTree(state)
 
 }
 export default state
