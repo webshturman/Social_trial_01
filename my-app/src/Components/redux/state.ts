@@ -8,30 +8,30 @@ export type RootStateType = {
     dialogPage: DialogPageType
     profilePage: ProfilePageType
 }
-type DialogPageType = {
+export type DialogPageType = {
     sender: Array<senderType>
     messages: Array<MessagesType>
 }
-type senderType = {
+export type senderType = {
     id: string
     name: string
     avatar?: string
 }
-type MessagesType ={
+export type MessagesType ={
     id:string
     message:string
 }
-type ProfilePageType = {
+export type ProfilePageType = {
     post: Array<PostType>
 }
-type PostType = {
+export type PostType = {
     id: string
     avatar: string
     message: string
     likecounts: number
 }
 //-----------------------------------------------------------------------------
-let state: RootStateType = {
+const state: RootStateType = {
     dialogPage: {
         sender: [
             {id:v1(), name: 'Andrey', avatar:'https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/14/5e2d01291b6b9-bpthumb.jpg'},

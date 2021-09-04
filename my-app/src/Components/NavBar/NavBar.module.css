@@ -19,8 +19,7 @@
     text-decoration: underline;
     cursor:pointer;
 }
-/*.active{*/
-/*    text-decoration: underline ;*/
-/*}*/
-
-/*{`${s.item} ${s.active}`}*/
+.item {
+    display: flex;
+    align-items: center;
+}

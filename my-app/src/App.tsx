@@ -13,7 +13,8 @@ import state, {addPost} from "./Components/redux/state";
 
 //------------------------------------------------------------------------------------
 export const App = () => {
-    const dialogsBlock = ()=> <Dialogs/>
+    const messages = state.dialogPage.messages
+    const dialogsBlock = ()=> <Dialogs messages={messages}/>
     const profileBlock = ()=> <Profile addPost={addPost}/>
   return (
       <BrowserRouter>
