@@ -1,20 +1,23 @@
 import React from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {changingPostMessage, PostType, ProfilePageType} from "../redux/state";
 
 
 export type AddPostPropsType ={
-    // message:string
-    addPost: (message:string) => void
+    addPost: () => void
+    changingPostMessage:(newText:string) =>void
+    postData: ProfilePageType
 }
 
-
-
-export const Profile:React.FC<AddPostPropsType> = ({addPost}) => {
+export const Profile:React.FC<AddPostPropsType> = ({...restProps}) => {
     return (
-    <div>
-        <ProfileInfo/>
-        <MyPosts addPost={addPost}/>
-    </div>
+        <div>
+            <ProfileInfo/>
+            <MyPosts {...restProps}/>
+        </div>
     )
 }
+
+
+

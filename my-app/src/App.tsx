@@ -8,14 +8,15 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./News/News";
 import {Musik} from "./Musik/Musik";
 import {Settings} from "./Settings/Settings";
-import state, {addPost} from "./Components/redux/state";
+import state, {addPost, changingPostMessage} from "./Components/redux/state";
 
 
 //------------------------------------------------------------------------------------
 export const App = () => {
-    const messages = state.dialogPage.messages
-    const dialogsBlock = ()=> <Dialogs messages={messages}/>
-    const profileBlock = ()=> <Profile addPost={addPost}/>
+    const dialogsBlock = ()=> <Dialogs dialog={state.dialogPage}/>
+    const profileBlock = ()=> <Profile addPost={addPost}
+                                       postData={state.profilePage}
+                                       changingPostMessage={changingPostMessage}/>
   return (
       <BrowserRouter>
       <div className={'app-wrapper'}>

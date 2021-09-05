@@ -1,7 +1,11 @@
 
 import {v1} from "uuid";
-import {rerenderEntireTree} from "../../render";
 
+
+//----------------------------------------------------------------------------
+let changingState = () => {
+    console.log('hello')
+}
 
 //----------------------------------------------------------------------------
 export type RootStateType = {
@@ -22,6 +26,7 @@ export type MessagesType ={
     message:string
 }
 export type ProfilePageType = {
+    newPostMessage:string
     post: Array<PostType>
 }
 export type PostType = {
@@ -51,7 +56,8 @@ const state: RootStateType = {
 
 //posts in Profile-------------------------------------------------------------------------
     profilePage: {
-       post: [
+        newPostMessage:'',
+        post: [
             {
                 id:v1(),
                 avatar: "https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/6/5e2cccd55f95b-bpthumb.jpg",
@@ -68,15 +74,23 @@ const state: RootStateType = {
     },
 
 }
-export const addPost = (message:string) => {
+export const subscribe = (observer: () => void)=> {
+    changingState = observer
+}
+export const changingPostMessage = (newText:string) =>{
+    state.profilePage.newPostMessage = newText
+    changingState()
+}
+export const addPost = () => {
     let newPost: PostType ={
         id:v1(),
         avatar: "https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/12/5e2cfd5d1d7c0-bpthumb.jpg",
-        message: message,
+        message: state.profilePage.newPostMessage,
         likecounts:0
     }
     state.profilePage.post.push(newPost);
-    rerenderEntireTree(state)
+    state.profilePage.newPostMessage = ''
+    changingState()
 
 }
 export default state

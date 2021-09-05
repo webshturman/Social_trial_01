@@ -2,19 +2,19 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {Message} from "./Messages/Message";
 import {Senders} from "./Senders/Senders";
-import state, {MessagesType, RootStateType} from "../Components/redux/state";
+import state, {DialogPageType, MessagesType, RootStateType, senderType} from "../Components/redux/state";
 
 export type DialogsPropsType = {
-    messages:Array<MessagesType>
+    dialog:DialogPageType
 }
 
 
-export const Dialogs: React.FC<DialogsPropsType> = ({messages}) => {
+export const Dialogs: React.FC<DialogsPropsType> = ({dialog}) => {
     return (
         <div className={s.dialogs}>
             {/*<h1>Dialogs</h1>*/}
-            <Senders/>
-            <Message messages={messages}/>
+            <Senders sender={dialog.sender}/>
+            <Message messages={dialog.messages}/>
         </div>
     )
 }

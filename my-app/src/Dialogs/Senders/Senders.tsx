@@ -1,15 +1,18 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from '../Dialogs.module.css'
-import state from '../../Components/redux/state'
+import state, {DialogPageType, senderType} from '../../Components/redux/state'
 
 
-export const Senders: React.FC= (props) => {
+export type SendersPropsType = {
+    sender: Array<senderType>
+}
+
+export const Senders: React.FC<SendersPropsType>= ({sender}) => {
 
     return (
-
         <ul className={`${s.item}  ${s.senders}`}>
-            {state.dialogPage.sender.map((t) => {
+            {sender.map((t) => {
                 let path = `/dialogs/${t.id}`
                 return (
                     <div className={s.senderInfo}>
