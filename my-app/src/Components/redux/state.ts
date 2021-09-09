@@ -2,12 +2,16 @@
 import {v1} from "uuid";
 
 
-//----------------------------------------------------------------------------
-let changingState = () => {
-    console.log('hello')
+//-----------------------------------------------------------------------
+export type StoreType = {
+    _state: RootStateType
+    getState: ()=> RootStateType //не void, потому что есть return, возвращает весь _state
+    _changingState: ()=> void
+    subscribe:(callback: () => void) => void
+    // changingPostMessage: (newText:string) => void
+    // addPost: ()=> void
+    dispatch: (action: ActionTypes) => void
 }
-
-//----------------------------------------------------------------------------
 export type RootStateType = {
     dialogPage: DialogPageType
     profilePage: ProfilePageType
@@ -35,8 +39,18 @@ export type PostType = {
     message: string
     likecounts: number
 }
+type ActionAddPostType ={
+    type: 'ADD-POST'
+}
+type ActionChangeMessageType ={
+    type: 'CHANGE-POST-MESSAGE'
+    newText:string
+}
+export type ActionTypes = ActionAddPostType | ActionChangeMessageType
+
 //-----------------------------------------------------------------------------
-const state: RootStateType = {
+export const store: StoreType = {
+    _state: {
     dialogPage: {
         sender: [
             {id:v1(), name: 'Andrey', avatar:'https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/14/5e2d01291b6b9-bpthumb.jpg'},
@@ -45,7 +59,7 @@ const state: RootStateType = {
             {id:v1(), name: 'Ashley', avatar:'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/4/2020/05/woman-wearing-white-knitted-dress-709790-2-450x320.jpg'},
             {id:v1(), name: 'Milana', avatar:'https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/12/5e2cfd5d1d7c0-bpthumb.jpg'},
         ],
-         messages: [
+        messages: [
             {id:v1(), message: 'Privet Medved'},
             {id:v1(), message: 'Hallo malloy'},
             {id:v1(), message: 'Nice very nice'},
@@ -73,24 +87,52 @@ const state: RootStateType = {
         ]
     },
 
-}
-export const subscribe = (observer: () => void)=> {
-    changingState = observer
-}
-export const changingPostMessage = (newText:string) =>{
-    state.profilePage.newPostMessage = newText
-    changingState()
-}
-export const addPost = () => {
-    let newPost: PostType ={
-        id:v1(),
-        avatar: "https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/12/5e2cfd5d1d7c0-bpthumb.jpg",
-        message: state.profilePage.newPostMessage,
-        likecounts:0
+    },
+    _changingState() {
+        console.log('hello')
+    },
+    getState() {
+        return this._state
+    },
+
+   subscribe (observer: () => void) {
+        this._changingState = observer
+    },
+    // changingPostMessage(newText:string){
+    //     this._state.profilePage.newPostMessage = newText
+    //     this._changingState()
+    // },
+    // addPost() {
+    //     let newPost: PostType ={
+    //         id:v1(),
+    //         avatar: "https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/12/5e2cfd5d1d7c0-bpthumb.jpg",
+    //         message: this._state.profilePage.newPostMessage,
+    //         likecounts:0
+    //     }
+    //     this._state.profilePage.post.push(newPost);
+    //     this._state.profilePage.newPostMessage = '';
+    //     this._changingState()
+    // },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost: PostType ={
+                id:v1(),
+                avatar: "https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/12/5e2cfd5d1d7c0-bpthumb.jpg",
+                message: this._state.profilePage.newPostMessage,
+                likecounts:0
+            }
+            this._state.profilePage.post.push(newPost);
+            this._state.profilePage.newPostMessage = '';
+            this._changingState()
+        } else if(action.type === 'CHANGE-POST-MESSAGE'){
+            this._state.profilePage.newPostMessage = action.newText
+            this._changingState()
+
+        }
     }
-    state.profilePage.post.push(newPost);
-    state.profilePage.newPostMessage = ''
-    changingState()
 
 }
-export default state
+
+
+
+

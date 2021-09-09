@@ -10,15 +10,16 @@ import {PostType, ProfilePageType} from "../../redux/state";
 //------------------------------------------------------------------------------------------
 
 export const MyPosts:React.FC<AddPostPropsType> = (
-    {postData,changingPostMessage,addPost}
+    {postData,dispatch}
 ) => {
 
 
     const changeNewPostMessage = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
-        changingPostMessage(e.currentTarget.value)
+        // changingPostMessage(e.currentTarget.value)
+        dispatch({type: 'CHANGE-POST-MESSAGE', newText:e.currentTarget.value})
     }
     const addingPost = () => {
-        addPost()
+        dispatch({type: 'ADD-POST'})
     }
     return (
         <div className={s.myposts}>

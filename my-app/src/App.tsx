@@ -8,15 +8,17 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./News/News";
 import {Musik} from "./Musik/Musik";
 import {Settings} from "./Settings/Settings";
-import state, {addPost, changingPostMessage} from "./Components/redux/state";
-
-
+import {StoreType} from "./Components/redux/state";
+//----------------------------------------------------------------------------------------
+type PropsStoreType ={
+    store:StoreType
+}
 //------------------------------------------------------------------------------------
-export const App = () => {
+export const App: React.FC<PropsStoreType> = ({store}) => {
+    const state = store.getState();
     const dialogsBlock = ()=> <Dialogs dialog={state.dialogPage}/>
-    const profileBlock = ()=> <Profile addPost={addPost}
-                                       postData={state.profilePage}
-                                       changingPostMessage={changingPostMessage}/>
+    const profileBlock = ()=> <Profile dispatch={store.dispatch.bind(store)}
+                                       postData={state.profilePage}/>
   return (
       <BrowserRouter>
       <div className={'app-wrapper'}>

@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from '../Dialogs.module.css'
-import state, {DialogPageType, senderType} from '../../Components/redux/state'
+import {senderType} from "../../Components/redux/state";
 
 
 export type SendersPropsType = {
