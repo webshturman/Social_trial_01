@@ -3,8 +3,6 @@ import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {Button, Container, Grid, TextField} from "@material-ui/core";
 import {AddPostPropsType} from "../Profile";
-import {PostType, ProfilePageType} from "../../redux/state";
-
 
 
 //------------------------------------------------------------------------------------------

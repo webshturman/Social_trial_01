@@ -1,6 +1,6 @@
 import s from '../Dialogs.module.css'
 import React from "react";
-import {DialogPageType, MessagesType} from "../../Components/redux/state";
+import {MessagesType} from "../../Components/redux/state";
 
 export type MessagePropsType = {
     messages:Array<MessagesType>
