@@ -2,17 +2,18 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import s from '../Dialogs.module.css'
 import {senderType} from "../../Components/redux/state";
+import {DialogsPropsType} from "../Dialogs";
 
 
-export type SendersPropsType = {
-    sender: Array<senderType>
-}
+// export type SendersPropsType = {
+//     sender: Array<senderType>
+// }
 
-export const Senders: React.FC<SendersPropsType>= ({sender}) => {
+export const Senders: React.FC<DialogsPropsType> = ({dialog}) => {
 
     return (
         <ul className={`${s.item}  ${s.senders}`}>
-            {sender.map((t) => {
+            {dialog.sender.map((t) => {
                 let path = `/dialogs/${t.id}`
                 return (
                     <div className={s.senderInfo}>

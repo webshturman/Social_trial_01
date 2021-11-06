@@ -11,12 +11,12 @@ import {Settings} from "./Settings/Settings";
 import {StoreType} from "./Components/redux/state";
 //----------------------------------------------------------------------------------------
 type PropsStoreType ={
-    store:StoreType
+    store?:StoreType
 }
 //------------------------------------------------------------------------------------
 export const App: React.FC<PropsStoreType> = ({store}) => {
     const state = store.getState();
-    const dialogsBlock = ()=> <Dialogs dialog={state.dialogPage}/>
+    const dialogsBlock = ()=> <Dialogs dialog={state.dialogPage} dispatch={store.dispatch.bind(store)}/>
     const profileBlock = ()=> <Profile dispatch={store.dispatch.bind(store)}
                                        postData={state.profilePage}/>
   return (

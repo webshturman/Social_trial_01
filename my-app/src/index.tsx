@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import reportWebVitals from './reportWebVitals';
-import  {store} from '../src/Components/redux/state'
+import {Provider} from "react-redux";
+import {store} from "./Components/redux/store";
 
 
 const rerenderEntireTree = () => {
     ReactDOM.render(
-        <React.StrictMode>
-            <App store={store}/>
-        </React.StrictMode>,
+        <Provider store={store}>
+            <App/>
+        </Provider>,
         document.getElementById('root')
     );
 }

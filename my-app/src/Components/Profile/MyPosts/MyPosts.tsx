@@ -1,30 +1,29 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useState} from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {Button, Container, Grid, TextField} from "@material-ui/core";
 import {AddPostPropsType} from "../Profile";
-
+import {addPostAC} from "../../redux/actions";
 
 //------------------------------------------------------------------------------------------
 
 export const MyPosts:React.FC<AddPostPropsType> = (
     {postData,dispatch}
 ) => {
-
-
+    const [value,setValue]=useState('')
     const changeNewPostMessage = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
-        // changingPostMessage(e.currentTarget.value)
-        dispatch({type: 'CHANGE-POST-MESSAGE', newText:e.currentTarget.value})
+        setValue(e.currentTarget.value)
     }
     const addingPost = () => {
-        dispatch({type: 'ADD-POST'})
+        dispatch(addPostAC(value))
+        setValue('')
     }
     return (
         <div className={s.myposts}>
             <Container fixed>
                 <form noValidate autoComplete="off" >
                     <TextField id="outlined-basic" label="Write a post" fullWidth={true} onChange={changeNewPostMessage}
-                               value={postData.newPostMessage}  variant="outlined" style={{margin: "20px 0 10px 0"}} multiline={true}
+                               value={value}  variant="outlined" style={{margin: "20px 0 10px 0"}} multiline={true}
                     />
                     <Grid container justify={"flex-end"}>
                         <div></div>
