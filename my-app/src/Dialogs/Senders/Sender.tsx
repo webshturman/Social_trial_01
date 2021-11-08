@@ -8,19 +8,17 @@ import {senderType} from "../../Components/redux/state";
 //     sender: Array<senderType>
 // }
 
-export const Senders: React.FC<senderType > = ({id,name,avatar}) => {
+export const Sender: React.FC<senderType> = ({id, name, avatar}) => {
     let path = `/dialogs/${id}`
-    return (
-        <ul className={`${s.item}  ${s.senders}`}>
-                return (
 
-                    <div className={s.senderInfo}>
-                        <img src={avatar} className={s.senderAva} alt=""/>
-                        <li key={id}><NavLink to={path} activeClassName={s.active}>{name}</NavLink></li>
-                    </div>
-                )
-            })
-        </ul>
+    return (
+
+        <div className={s.senderInfo}>
+            <li key={id}><NavLink to={path} activeClassName={s.active}>
+                <img src={avatar} className={s.senderAva} alt=""/>
+                <span>{name}</span>
+            </NavLink></li>
+        </div>
     )
 }
 //

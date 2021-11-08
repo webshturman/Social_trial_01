@@ -1,37 +1,31 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './Dialogs.module.css'
 import {Message} from "./Messages/Message";
-import {Senders} from "./Senders/Senders";
-import {DialogPageType} from "../Components/redux/state";
-import {CommonActionType, sendMessageAC} from "../Components/redux/actions";
+import {Sender} from "./Senders/Sender";
 import {Button, Grid, TextField} from "@material-ui/core";
 import {DialogsType} from "./DialogsContainer";
 
-// export type DialogsPropsType = {
-//     dialog:DialogPageType
-//     dispatch: (action: CommonActionType) => void
-// }
 
-
-export const Dialogs: React.FC<DialogsType> = (props) => {
-    const [inputValue,setInputValue] = useState('')
-    const changeMessageText = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
+export const Dialogs: React.FC<DialogsType> = ({senders, messages, sendMessage}) => {
+    const [inputValue, setInputValue] = useState('')
+    const changeMessageText = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setInputValue(e.currentTarget.value)
     }
     const sendingMessage = () => {
-        props.sendMessage(inputValue)
+        sendMessage(inputValue)
         setInputValue('')
     }
     return (
         <div className={s.dialogs}>
+            <ul className={`${s.item}  ${s.senders}`}>
+                {senders.map(sender => <Sender id={sender.id} name={sender.name} avatar={sender.avatar}
+                                               key={sender.id}/>)}
+            </ul>
             <div>
-                {props.sender.map(m => <Sender id={m.id} name={m.name} avatar={m.avatar}/> )}
+                {messages.map(message => <Message key={message.id} message={message.message} id={message.id}/>)}
             </div>
             <div>
-                {props.messages.map(m => <Message message={m.message}/> )}
-            </div>
-            <div>
-                <form noValidate autoComplete="off" >
+                <form noValidate autoComplete="off">
                     <TextField id="outlined-basic" label="Write a message" fullWidth={true} value={inputValue}
                                variant="outlined" style={{margin: "20px 0 10px 0"}}
                                multiline={true} onChange={changeMessageText}
@@ -47,3 +41,4 @@ export const Dialogs: React.FC<DialogsType> = (props) => {
         </div>
     )
 }
+

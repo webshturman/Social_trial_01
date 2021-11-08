@@ -15,7 +15,7 @@ export type RootStateType = {
     profilePage: ProfilePageType
 }
 export type DialogPageType = {
-    sender: Array<senderType>
+    senders: Array<senderType>
     messages: Array<MessagesType>
 }
 export type senderType = {
@@ -49,7 +49,7 @@ export type PostType = {
 export const store: StoreType = {
     _state: {
         dialogPage: {
-            sender: [
+            senders: [
                 {
                     id: v1(),
                     name: 'Andrey',

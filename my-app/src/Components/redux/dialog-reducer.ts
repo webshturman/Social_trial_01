@@ -17,7 +17,7 @@ import {DialogPageType, MessagesType} from "./state";
 // }
 //-----------------------------------------------------------------------------------
 const InitialState: DialogPageType = {
-    sender: [
+    senders: [
         {
             id: v1(),
             name: 'Andrey',
