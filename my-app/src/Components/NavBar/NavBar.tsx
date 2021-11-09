@@ -32,7 +32,13 @@ export const NavBar: React.FC = () => {
             <IconButton size={'medium'} style={{padding:"0 5px 0 0"}}>
                 <MusicVideoOutlinedIcon style={{fontSize:"1rem"}}/>
             </IconButton>
-            <NavLink to={'/musik'} activeClassName={s.active}>Music</NavLink>
+            <NavLink to={'/music'} activeClassName={s.active}>Music</NavLink>
+        </div>
+        <div className={s.item}>
+            <IconButton size={'medium'} style={{padding:"0 5px 0 0"}}>
+                <MusicVideoOutlinedIcon style={{fontSize:"1rem"}}/>
+            </IconButton>
+            <NavLink to={'/users'} activeClassName={s.active}>Find User</NavLink>
         </div>
         <div className={s.item}>
             <IconButton size={'medium'} style={{padding:"0 5px 0 0"}}>

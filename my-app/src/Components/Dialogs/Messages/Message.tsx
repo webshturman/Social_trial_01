@@ -1,7 +1,6 @@
 import s from '../Dialogs.module.css'
 import React from "react";
-import {MessagesType} from "../../Components/redux/state";
-
+import {MessagesType} from "../../redux/dialog-reducer";
 
 
 export const Message: React.FC<MessagesType> = ({message,id}) =>{
@@ -9,7 +8,7 @@ export const Message: React.FC<MessagesType> = ({message,id}) =>{
     return (
         <div className={s.item}>
             {/*{dialog.messages.map(m => <div key={m.id}>{m.message}</div>)}*/}
-            <div key={id}>{message}</div>)
+            <div key={id}>{message}</div>
         </div>
     )
 }

@@ -1,22 +1,22 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from '../Dialogs.module.css'
-import {senderType} from "../../Components/redux/state";
+import {senderType} from "../../redux/dialog-reducer";
 
 
-// export type SendersPropsType = {
-//     sender: Array<senderType>
-// }
+
 
 export const Sender: React.FC<senderType> = ({id, name, avatar}) => {
     let path = `/dialogs/${id}`
 
     return (
 
-        <div className={s.senderInfo}>
+        <div>
             <li key={id}><NavLink to={path} activeClassName={s.active}>
-                <img src={avatar} className={s.senderAva} alt=""/>
-                <span>{name}</span>
+                <div  className={s.senderInfo}>
+                    <img src={avatar} className={s.senderAva} alt=""/>
+                    <div>{name}</div>
+                </div>
             </NavLink></li>
         </div>
     )

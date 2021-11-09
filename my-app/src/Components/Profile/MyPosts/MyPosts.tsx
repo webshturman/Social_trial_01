@@ -2,14 +2,19 @@ import React, {ChangeEvent, useState} from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {Button, Container, Grid, TextField} from "@material-ui/core";
-import {AddPostPropsType} from "../Profile";
+
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../redux/store";
+import {PostType} from "../../redux/profile-reducer";
 import {addPostAC} from "../../redux/actions";
 
 //------------------------------------------------------------------------------------------
 
-export const MyPosts:React.FC<AddPostPropsType> = (
-    {postData,dispatch}
-) => {
+export const MyPosts:React.FC = () => {
+    const posts = useSelector<AppRootStateType, Array<PostType>>(state=>state.profile.posts)
+    const dispatch = useDispatch()
+
+
     const [value,setValue]=useState('')
     const changeNewPostMessage = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
         setValue(e.currentTarget.value)
@@ -34,7 +39,7 @@ export const MyPosts:React.FC<AddPostPropsType> = (
                 </form>
             </Container>
             <div>
-                <Post post={postData.post}/>
+                {posts.map(post=> <Post avatar={post.avatar} id={post.id} likeCounts={post.likeCounts} message={post.message} key={post.id}/>)}
             </div>
         </div>
     )

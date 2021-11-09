@@ -1,10 +1,16 @@
-import {AppRootStateType} from "../Components/redux/store";
+
 import {connect} from "react-redux";
 import {Dialogs} from "./Dialogs";
-import {sendMessageAC, SendMessageActionType} from "../Components/redux/actions";
 import {Dispatch} from "redux";
-import {DialogPageType} from "../Components/redux/state";
+import {DialogPageType} from "../redux/dialog-reducer";
+import {AppRootStateType} from "../redux/store";
+import {sendMessageAC} from "../redux/actions";
+
+
 //-------------------------------------------------------------------------------------------
+// export type mapStateToPropsType = {
+//     dialogPage:DialogPageType
+// }
 export type mapDispatchPropsType = {
     sendMessage: (newMessage:string)=> void
 }
@@ -13,15 +19,15 @@ export type DialogsType = mapDispatchPropsType & DialogPageType
 
 const mapStateToProps =(state:AppRootStateType):DialogPageType => {
     return {
-        senders: state.dialog.senders,
-        messages: state.dialog.messages,
+        senders:state.dialog.senders,
+        messages:state.dialog.messages
     }
 }
-const mapDispatchToProps =(dispatch:Dispatch<SendMessageActionType>):mapDispatchPropsType=> {
+const mapDispatchToProps =(dispatch:Dispatch):mapDispatchPropsType=> {
     return {
         sendMessage(newMessage:string) {
             dispatch(sendMessageAC(newMessage))
         }
     }
 }
-export const DialogConnector = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
+connect(mapStateToProps,mapDispatchToProps)(Dialogs)

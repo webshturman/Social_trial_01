@@ -5,8 +5,7 @@
     color: darkblue;
 }
 
-.item{
-
+.messageBlock{
     padding-left: 40px;
 }
 .senders{
@@ -24,7 +23,9 @@
     height: 50px;
     border-radius: 20px;
     margin: 0 10px 10px 0;
+    display: block;
 }
 .senderInfo{
     display: flex;
+    align-items: center;
 }
