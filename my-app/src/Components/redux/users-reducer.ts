@@ -8,7 +8,7 @@ const InitialState:InitialStateUsersType = {
             followed:false,
             status:'Looking for a job',
             fullName: 'Andrey',
-            avatar: 'https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/14/5e2d01291b6b9-bpthumb.jpg',
+            avatar: 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/12/2020/01/man-wearing-eyeglasses-839586-800x533.jpg?1636544438',
             location:{city:'Minsk', country:'Belarus'},
         },
         {
@@ -24,7 +24,7 @@ const InitialState:InitialStateUsersType = {
             followed:false,
             status:'Looking for some fun',
             fullName: 'Jessica',
-            avatar: 'https://mythemestore.com/beehive-preview/wp-content/uploads/avatars/6/5e2cccd55f95b-bpthumb.jpg',
+            avatar: 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/6/2020/01/woman-wearing-red-long-sleeved-dress-holding-pink-petaled-807842-800x563.jpg?1636544497',
             location:{city:'New York', country:'USA'},
         },
     ]

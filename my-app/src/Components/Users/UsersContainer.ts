@@ -1,9 +1,9 @@
-import {ProfilePageType} from "../redux/profile-reducer";
+
 import {AppRootStateType} from "../redux/store";
 import {Dispatch} from "redux";
-import {addPostAC, followUserAC} from "../redux/actions";
+import { followUserAC} from "../redux/actions";
 import {connect} from "react-redux";
-import {MyPosts} from "../Profile/MyPosts/MyPosts";
+
 import {InitialStateUsersType} from "../redux/users-reducer";
 import {Users} from "./Users";
 
