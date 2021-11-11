@@ -1,9 +1,11 @@
+import {UserType} from "./users-reducer";
+
 export enum ACTIONS_TYPE {
     ADD_POST = 'MyPosts/ADD_POST',
     SEND_MESSAGE = 'Messages/SEND_MESSAGE ',
     FOLLOW_USER = 'Users/FOLLOW_USER',
     UNFOLLOW_USER = 'Users/UNFOLLOW_USER',
-    SET_USERS = 'Users/UNFOLLOW_USER',
+    GET_USERS = 'Users/GET_USERS',
 }
 //----------------------------------------------------------------------
 export type AddPostActionType = ReturnType<typeof addPostAC>
@@ -20,8 +22,15 @@ export const sendMessageAC = (newMessage:string) => {
 }
 
 //----------------------------------------------------------------------------------
+export type CommonUsersActionType = FollowUserActionType | GetUsersActionType
 export type FollowUserActionType = ReturnType<typeof followUserAC>
 
-export const followUserAC =(isFollow:boolean, userID:string)=> {
+export const followUserAC =(isFollow:boolean, userID:number)=> {
     return {type:ACTIONS_TYPE.FOLLOW_USER, isFollow,userID} as const
+}
+//----------------------------------------------------------------------------------
+export type GetUsersActionType = ReturnType<typeof getUsersAC>
+
+export const getUsersAC=(users:Array<UserType>)=> {
+    return {type:ACTIONS_TYPE.GET_USERS, users} as const
 }
