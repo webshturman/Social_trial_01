@@ -11,6 +11,23 @@ const instance = axios.create({
 
 export const UsersAPI = {
     getUsers(){
-       return instance.get('users')
+       return instance.get<GetUsersType>('users')
     }
+}
+
+type GetUsersType={
+    items:Array<UserType>
+    totalCount:number
+    error: string
+}
+export type UserType={
+    name: string,
+    id: number
+    uniqueUrlName: null
+    photos: {
+        small: null
+        large: null
+    }
+    status: null
+    followed: boolean
 }

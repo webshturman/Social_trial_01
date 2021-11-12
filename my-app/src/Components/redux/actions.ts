@@ -1,4 +1,5 @@
-import {UserType} from "./users-reducer";
+import {UserType} from "../../api/user-api";
+
 
 export enum ACTIONS_TYPE {
     ADD_POST = 'MyPosts/ADD_POST',

@@ -1,12 +1,11 @@
-
 import {AppRootStateType} from "../redux/store";
 import {Dispatch} from "redux";
 import {followUserAC, getUsersAC} from "../redux/actions";
 import {connect} from "react-redux";
 
-import {InitialStateUsersType, UserType} from "../redux/users-reducer";
+import {InitialStateUsersType} from "../redux/users-reducer";
 import {Users} from "./Users";
-import {UsersAPI} from "../../api/user-api";
+import {UserType} from "../../api/user-api";
 
 export type mapStateToPropsType = {
     users:InitialStateUsersType

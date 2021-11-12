@@ -1,5 +1,5 @@
-
-import {ACTIONS_TYPE, CommonUsersActionType, FollowUserActionType} from "./actions";
+import {ACTIONS_TYPE, CommonUsersActionType} from "./actions";
+import {UserType} from "../../api/user-api";
 
 const InitialState:InitialStateUsersType = {
     items:[
@@ -32,23 +32,6 @@ const InitialState:InitialStateUsersType = {
 export type InitialStateUsersType = {
     items:Array<UserType>
 }
-// export type LocationUserType = {
-//     city:string,
-//     country:string,
-// }
-export type UserType={
-    name: string,
-    id: number
-    uniqueUrlName: null
-    photos: {
-        small: null
-        large: null
-    }
-    status: null
-    followed: boolean
-    // location:LocationUserType,
-}
-
 
 export const usersReducer = (state:InitialStateUsersType=InitialState, action:CommonUsersActionType):InitialStateUsersType=> {
     switch(action.type){

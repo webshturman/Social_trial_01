@@ -8,19 +8,17 @@ import {UsersAPI} from "../../api/user-api";
 export const Users: FC<UsersCommonType> = ({users,toFollow,getUsersFromApi}) => {
     useEffect(()=> {
         UsersAPI.getUsers()
-            //@ts-ignore
             .then((res)=> {
-                getUsersFromApi(res.data)
+                getUsersFromApi(res.data.items)
             })
     }, [])
 
     return (
         <div className={s.usersContainer}>
             <div className={s.usersList}>
-                {/*@ts-ignore*/}
-                {users.items.map(user => <User id={user.id} name={user.name} photos={user.photos.small}
+                {users.items.map(user => <User id={user.id} name={user.name} photos={user.photos}
                                                followed={user.followed} key={user.id} toFollow={toFollow}
-                                                status={user.status} />)}
+                                                status={user.status} uniqueUrlName={user.uniqueUrlName}/>)}
             </div>
             <div className={s.showButton}>
                 <Button variant="contained" color="primary" size={'small'}>
