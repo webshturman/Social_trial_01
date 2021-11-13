@@ -3,13 +3,15 @@ import {Dispatch} from "redux";
 import {followUserAC, getUsersAC} from "../redux/actions";
 import {connect} from "react-redux";
 
-import {InitialStateUsersType} from "../redux/users-reducer";
 
 import {UserType} from "../../api/user-api";
 import {Users} from "./UsersC";
 
 export type mapStateToPropsType = {
-    users:InitialStateUsersType
+    users:Array<UserType>
+    totalCount:number
+    currentPage:number
+    pageSize:number
 }
 
 export type mapDispatchPropsType = {
@@ -21,7 +23,10 @@ export type UsersCommonType = mapDispatchPropsType & mapStateToPropsType
 
 const mapStateToProps =(state:AppRootStateType):mapStateToPropsType=> {
     return {
-        users: state.users
+        users: state.users.items,
+        totalCount: state.users.totalCount,
+        currentPage: state.users.currentPage,
+        pageSize:state.users.pageSize
     }
 }
 const mapDispatchToProps =(dispatch:Dispatch):mapDispatchPropsType=> {

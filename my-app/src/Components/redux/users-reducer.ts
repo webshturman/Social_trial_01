@@ -27,10 +27,16 @@ const InitialState:InitialStateUsersType = {
         //     avatar: 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/6/2020/01/woman-wearing-red-long-sleeved-dress-holding-pink-petaled-807842-800x563.jpg?1636544497',
         //     location:{city:'New York', country:'USA'},
         // },
-    ]
+    ],
+    totalCount:21,
+    pageSize:5,
+    currentPage:1
 }
 export type InitialStateUsersType = {
     items:Array<UserType>
+    totalCount:number
+    pageSize:number
+    currentPage:number
 }
 
 export const usersReducer = (state:InitialStateUsersType=InitialState, action:CommonUsersActionType):InitialStateUsersType=> {
