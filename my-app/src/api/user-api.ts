@@ -25,7 +25,7 @@ export type UserType={
     id: number
     uniqueUrlName: null
     photos: {
-        small: null
+        small: null | string
         large: null
     }
     status: null

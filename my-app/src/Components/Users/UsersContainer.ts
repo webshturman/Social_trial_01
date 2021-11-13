@@ -1,6 +1,6 @@
 import {AppRootStateType} from "../redux/store";
 import {Dispatch} from "redux";
-import {followUserAC, getUsersAC} from "../redux/actions";
+import {followUserAC, getUsersAC, setCurrentPageAC, setTotalCountAC} from "../redux/actions";
 import {connect} from "react-redux";
 
 
@@ -17,6 +17,8 @@ export type mapStateToPropsType = {
 export type mapDispatchPropsType = {
     toFollow: (isFollow:boolean, userID:number)=> void
     getUsersFromApi: (users:Array<UserType>) => void
+    setCurrentPage: (page:number) => void
+    setTotalCount: (count:number)=>void
 }
 export type UsersCommonType = mapDispatchPropsType & mapStateToPropsType
 //------------------------------------------------------------------------------------------------------
@@ -36,6 +38,12 @@ const mapDispatchToProps =(dispatch:Dispatch):mapDispatchPropsType=> {
         },
          getUsersFromApi(users:Array<UserType>){
              dispatch(getUsersAC(users))
+        },
+        setCurrentPage(page:number){
+            dispatch(setCurrentPageAC(page))
+        },
+        setTotalCount(count:number){
+            dispatch(setTotalCountAC(count))
         }
     }
 }

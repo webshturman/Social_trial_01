@@ -25,3 +25,6 @@
 .usersContainer{
     width: 100%;
 }
+.selectedPage{
+    font-weight: bold;
+}

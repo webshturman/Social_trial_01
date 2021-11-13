@@ -22,19 +22,29 @@ export class Users extends React.Component<UsersCommonType, AppRootStateType> {
         UsersAPI.getUsers(this.props.currentPage,this.props.pageSize)
             .then((res) => {
                 this.props.getUsersFromApi(res.data.items)
+                this.props.setTotalCount(res.data.totalCount)
+            })
+    }
+    getUsersForCurrentPage(pageNumber:number){
+        UsersAPI.getUsers(pageNumber,this.props.pageSize)
+            .then((res) => {
+                this.props.getUsersFromApi(res.data.items)
+                this.props.setCurrentPage(pageNumber)
             })
     }
 
     render() {
         let pagesAmount = Math.ceil(this.props.totalCount/this.props.pageSize);
         let pages = [];
-        for(let i=1; i<=pagesAmount; i+=1){
+        for(let i=1; i<pagesAmount && i<20; i+=1){
             pages.push(i)
         };
+
         return (
             <div className={s.usersContainer}>
-                {pages.forEach(pageNum=>{
-                    return <span className={pageNum===this.props.currentPage ? s.selectedPage : ''}>{pageNum}</span>
+                {pages.map(pageNum=> {
+                    return <span className={pageNum===this.props.currentPage ? s.selectedPage : ''}
+                    onClick={()=>this.getUsersForCurrentPage(pageNum)}>{pageNum}</span>
                 })}
                 <div className={s.usersList}>
                     {this.props.users.map(user => <User id={user.id} name={user.name} photos={user.photos}

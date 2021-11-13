@@ -28,7 +28,7 @@ const InitialState:InitialStateUsersType = {
         //     location:{city:'New York', country:'USA'},
         // },
     ],
-    totalCount:21,
+    totalCount:0,
     pageSize:5,
     currentPage:1
 }
@@ -46,6 +46,10 @@ export const usersReducer = (state:InitialStateUsersType=InitialState, action:Co
                 items: state.items.map(user=> user.id === action.userID ? {...user, followed:action.isFollow} : user)};
         case ACTIONS_TYPE.GET_USERS:
             return {...state, items:action.users}
+        case ACTIONS_TYPE.SET_CURRENT_PAGE:
+            return {...state, currentPage:action.page}
+        case ACTIONS_TYPE.SET_TOTAL_COUNT:
+            return {...state, totalCount:action.count}
         default: return state
     }
 }

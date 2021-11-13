@@ -7,6 +7,8 @@ export enum ACTIONS_TYPE {
     FOLLOW_USER = 'Users/FOLLOW_USER',
     UNFOLLOW_USER = 'Users/UNFOLLOW_USER',
     GET_USERS = 'Users/GET_USERS',
+    SET_CURRENT_PAGE = 'Users/SET_CURRENT_PAGE',
+    SET_TOTAL_COUNT = 'Users/SET_TOTAL_COUNT'
 }
 //----------------------------------------------------------------------
 export type AddPostActionType = ReturnType<typeof addPostAC>
@@ -22,16 +24,30 @@ export const sendMessageAC = (newMessage:string) => {
     return {type:ACTIONS_TYPE.SEND_MESSAGE, newMessage} as const
 }
 
-//----------------------------------------------------------------------------------
-export type CommonUsersActionType = FollowUserActionType | GetUsersActionType
+//---------------------------USERS----------------------------------
+export type CommonUsersActionType = FollowUserActionType | GetUsersActionType | SetCurrentPageActionType |SetTotalCountActionType
+
 export type FollowUserActionType = ReturnType<typeof followUserAC>
 
 export const followUserAC =(isFollow:boolean, userID:number)=> {
     return {type:ACTIONS_TYPE.FOLLOW_USER, isFollow,userID} as const
 }
-//----------------------------------------------------------------------------------
+//--------------
 export type GetUsersActionType = ReturnType<typeof getUsersAC>
 
 export const getUsersAC=(users:Array<UserType>)=> {
     return {type:ACTIONS_TYPE.GET_USERS, users} as const
+}
+//--------------
+export type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
+
+export const setCurrentPageAC=(page:number)=> {
+    return {type:ACTIONS_TYPE.SET_CURRENT_PAGE, page} as const
+}
+
+//--------------
+export type SetTotalCountActionType = ReturnType<typeof setTotalCountAC>
+
+export const setTotalCountAC=(count:number)=> {
+    return {type:ACTIONS_TYPE.SET_TOTAL_COUNT, count} as const
 }
