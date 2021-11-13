@@ -4,8 +4,9 @@ import {followUserAC, getUsersAC} from "../redux/actions";
 import {connect} from "react-redux";
 
 import {InitialStateUsersType} from "../redux/users-reducer";
-import {Users} from "./Users";
+
 import {UserType} from "../../api/user-api";
+import {Users} from "./UsersC";
 
 export type mapStateToPropsType = {
     users:InitialStateUsersType

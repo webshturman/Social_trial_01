@@ -21,6 +21,7 @@ export const User: FC<SingleUserType> = (
         <div className={s.UserBlock} key={id}>
             <div className={s.followImgBlock}>
                 <div>
+                    {/*@ts-ignore*/}
                     <img src={photoPath} className={s.userImg} alt=""/>
                 </div>
                 <div>
