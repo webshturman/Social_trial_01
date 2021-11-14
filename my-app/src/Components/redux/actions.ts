@@ -10,13 +10,13 @@ export enum ACTIONS_TYPE {
     SET_CURRENT_PAGE = 'Users/SET_CURRENT_PAGE',
     SET_TOTAL_COUNT = 'Users/SET_TOTAL_COUNT'
 }
-//----------------------------------------------------------------------
+//----------------------------PROFILE-----------------------------
 export type AddPostActionType = ReturnType<typeof addPostAC>
 
 export const addPostAC = (newText:string) => {
     return {type:ACTIONS_TYPE.ADD_POST, newText} as const
 }
-//-----------------------------------------------------------------------
+//-------------------------MESSAGES---------------------------------
 
 export type SendMessageActionType = ReturnType<typeof sendMessageAC>
 
