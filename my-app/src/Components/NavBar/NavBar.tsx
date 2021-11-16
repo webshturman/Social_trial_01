@@ -7,6 +7,7 @@ import MailOutlineOutlinedIcon from '@material-ui/icons/MailOutlineOutlined';
 import TvOutlinedIcon from '@material-ui/icons/TvOutlined';
 import MusicVideoOutlinedIcon from '@material-ui/icons/MusicVideoOutlined';
 import SettingsApplicationsOutlinedIcon from '@material-ui/icons/SettingsApplicationsOutlined';
+import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 
 export const NavBar: React.FC = () => {
     return <nav className={s.nav}>
@@ -36,7 +37,7 @@ export const NavBar: React.FC = () => {
         </div>
         <div className={s.item}>
             <IconButton size={'medium'} style={{padding:"0 5px 0 0"}}>
-                <MusicVideoOutlinedIcon style={{fontSize:"1rem"}}/>
+                <GroupAddOutlinedIcon style={{fontSize:"1rem"}}/>
             </IconButton>
             <NavLink to={'/users'} activeClassName={s.active}>Find User</NavLink>
         </div>

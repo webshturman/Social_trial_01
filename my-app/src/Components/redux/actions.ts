@@ -8,7 +8,8 @@ export enum ACTIONS_TYPE {
     UNFOLLOW_USER = 'Users/UNFOLLOW_USER',
     GET_USERS = 'Users/GET_USERS',
     SET_CURRENT_PAGE = 'Users/SET_CURRENT_PAGE',
-    SET_TOTAL_COUNT = 'Users/SET_TOTAL_COUNT'
+    SET_TOTAL_COUNT = 'Users/SET_TOTAL_COUNT',
+    SET_LOADIND_STATUS = 'Users/SET_LOADING_STATUS',
 }
 //----------------------------PROFILE-----------------------------
 export type AddPostActionType = ReturnType<typeof addPostAC>
@@ -25,7 +26,8 @@ export const sendMessageAC = (newMessage:string) => {
 }
 
 //---------------------------USERS----------------------------------
-export type CommonUsersActionType = FollowUserActionType | GetUsersActionType | SetCurrentPageActionType |SetTotalCountActionType
+export type CommonUsersActionType = FollowUserActionType | GetUsersActionType |
+    SetCurrentPageActionType |SetTotalCountActionType | setLoadingStatusActionType
 
 export type FollowUserActionType = ReturnType<typeof followUserAC>
 
@@ -50,4 +52,10 @@ export type SetTotalCountActionType = ReturnType<typeof setTotalCountAC>
 
 export const setTotalCountAC=(count:number)=> {
     return {type:ACTIONS_TYPE.SET_TOTAL_COUNT, count} as const
+}
+//----------------------------
+export type setLoadingStatusActionType = ReturnType<typeof setLoadingStatusAC>
+
+export const setLoadingStatusAC=(status:boolean)=> {
+    return {type:ACTIONS_TYPE.SET_LOADIND_STATUS, status} as const
 }

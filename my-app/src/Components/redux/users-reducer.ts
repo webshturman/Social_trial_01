@@ -30,13 +30,15 @@ const InitialState:InitialStateUsersType = {
     ],
     totalCount:0,
     pageSize:5,
-    currentPage:1
+    currentPage:1,
+    loadingStatus:false
 }
 export type InitialStateUsersType = {
     items:Array<UserType>
     totalCount:number
     pageSize:number
     currentPage:number
+    loadingStatus:boolean
 }
 
 export const usersReducer = (state:InitialStateUsersType=InitialState, action:CommonUsersActionType):InitialStateUsersType=> {
@@ -50,6 +52,8 @@ export const usersReducer = (state:InitialStateUsersType=InitialState, action:Co
             return {...state, currentPage:action.page}
         case ACTIONS_TYPE.SET_TOTAL_COUNT:
             return {...state, totalCount:action.count}
+        case ACTIONS_TYPE.SET_LOADIND_STATUS:
+            return {...state, loadingStatus:action.status}
         default: return state
     }
 }

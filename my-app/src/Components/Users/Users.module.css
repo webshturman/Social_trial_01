@@ -27,4 +27,11 @@
 }
 .selectedPage{
     font-weight: bold;
+    padding:5px;
+}
+.pageNumber{
+    padding:5px;
+}
+.pageNumber:hover{
+    cursor:pointer;
 }
