@@ -6,5 +6,6 @@
 .header{
     grid-area: h;
     background-color: #383a45;
-    padding: 0 0 0 10px;
+    padding: 5px 0 0 10px;
+    border-radius: 5px;
 }

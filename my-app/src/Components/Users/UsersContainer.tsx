@@ -1,29 +1,11 @@
 import {AppRootStateType} from "../redux/store";
-import {Dispatch} from "redux";
-import {followUserAC, getUsersAC, setCurrentPageAC, setLoadingStatusAC, setTotalCountAC} from "../redux/actions";
+import {followUser, getUsersFromApi, setCurrentPage, setLoadingStatus, setTotalCount} from "../redux/actions";
 import {connect} from "react-redux";
 import {UsersAPI, UserType} from "../../api/user-api";
 import React from "react";
 import {UsersC} from "./UsersC";
 
 
-export type mapStateToPropsType = {
-    users:Array<UserType>
-    totalCount:number
-    currentPage:number
-    pageSize:number
-    loadingStatus:boolean
-}
-
-export type mapDispatchPropsType = {
-    toFollow: (isFollow:boolean, userID:number)=> void
-    getUsersFromApi: (users:Array<UserType>) => void
-    setCurrentPage: (page:number) => void
-    setTotalCount: (count:number)=>void
-    setLoadingStatus: (status:boolean)=>void
-}
-export type UsersCommonType = mapDispatchPropsType & mapStateToPropsType
-//------------------------------------------------------------------------------------------------------
 export class UsersContainer extends React.Component<UsersCommonType, AppRootStateType> {
 
     // constructor(props: UsersCommonType) {
@@ -43,7 +25,7 @@ export class UsersContainer extends React.Component<UsersCommonType, AppRootStat
             })
     };
 
-    getUsersForCurrentPage=(pageNumber:number)=> {
+    getUsersForCurrentPage = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         this.props.setLoadingStatus(true)
         UsersAPI.getUsers(pageNumber, this.props.pageSize)
@@ -55,41 +37,40 @@ export class UsersContainer extends React.Component<UsersCommonType, AppRootStat
 
     render() {
         return <UsersC getUsersForCurrentPage={this.getUsersForCurrentPage} users={this.props.users}
-                      toFollow={this.props.toFollow} totalCount={this.props.totalCount}
+                       followUser={this.props.followUser} totalCount={this.props.totalCount}
                        currentPage={this.props.currentPage} pageSize={this.props.pageSize}
                        loadingStatus={this.props.loadingStatus}/>
     }
 };
 
-//-------------------------------------------------------------------------------
 
-
-const mapStateToProps =(state:AppRootStateType):mapStateToPropsType=> {
+const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     return {
         users: state.users.items,
         totalCount: state.users.totalCount,
         currentPage: state.users.currentPage,
-        pageSize:state.users.pageSize,
+        pageSize: state.users.pageSize,
         loadingStatus: state.users.loadingStatus
     }
 }
-const mapDispatchToProps =(dispatch:Dispatch):mapDispatchPropsType=> {
-    return {
-        toFollow(isFollow:boolean, userID:number) {
-            dispatch(followUserAC(isFollow, userID))
-        },
-         getUsersFromApi(users:Array<UserType>){
-             dispatch(getUsersAC(users))
-        },
-        setCurrentPage(page:number){
-            dispatch(setCurrentPageAC(page))
-        },
-        setTotalCount(count:number){
-            dispatch(setTotalCountAC(count))
-        },
-        setLoadingStatus(status:boolean){
-            dispatch(setLoadingStatusAC(status))
-        }
-    }
+export const UsersConnector = connect(mapStateToProps, {
+    followUser, getUsersFromApi, setCurrentPage, setTotalCount, setLoadingStatus
+})(UsersContainer)
+
+
+export type mapStateToPropsType = {
+    users: Array<UserType>
+    totalCount: number
+    currentPage: number
+    pageSize: number
+    loadingStatus: boolean
 }
-export const UsersConnector = connect(mapStateToProps,mapDispatchToProps)(UsersContainer)
+
+export type mapDispatchPropsType = {
+    followUser: (isFollow: boolean, userID: number) => void
+    getUsersFromApi: (users: Array<UserType>) => void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalCount: (totalCount: number) => void
+    setLoadingStatus: (status: boolean) => void
+}
+export type UsersCommonType = mapDispatchPropsType & mapStateToPropsType

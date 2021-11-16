@@ -5,11 +5,10 @@ export enum ACTIONS_TYPE {
     ADD_POST = 'MyPosts/ADD_POST',
     SEND_MESSAGE = 'Messages/SEND_MESSAGE ',
     FOLLOW_USER = 'Users/FOLLOW_USER',
-    UNFOLLOW_USER = 'Users/UNFOLLOW_USER',
     GET_USERS = 'Users/GET_USERS',
     SET_CURRENT_PAGE = 'Users/SET_CURRENT_PAGE',
     SET_TOTAL_COUNT = 'Users/SET_TOTAL_COUNT',
-    SET_LOADIND_STATUS = 'Users/SET_LOADING_STATUS',
+    SET_LOADING_STATUS = 'Users/SET_LOADING_STATUS',
 }
 //----------------------------PROFILE-----------------------------
 export type AddPostActionType = ReturnType<typeof addPostAC>
@@ -26,36 +25,23 @@ export const sendMessageAC = (newMessage:string) => {
 }
 
 //---------------------------USERS----------------------------------
-export type CommonUsersActionType = FollowUserActionType | GetUsersActionType |
-    SetCurrentPageActionType |SetTotalCountActionType | setLoadingStatusActionType
 
-export type FollowUserActionType = ReturnType<typeof followUserAC>
+export type CommonUsersActionType = ReturnType<typeof followUser> | ReturnType<typeof getUsersFromApi> |
+    ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalCount> | ReturnType<typeof setLoadingStatus>
 
-export const followUserAC =(isFollow:boolean, userID:number)=> {
+export const followUser =(isFollow:boolean, userID:number)=> {
     return {type:ACTIONS_TYPE.FOLLOW_USER, isFollow,userID} as const
 }
-//--------------
-export type GetUsersActionType = ReturnType<typeof getUsersAC>
-
-export const getUsersAC=(users:Array<UserType>)=> {
+export const getUsersFromApi=(users:Array<UserType>)=> {
     return {type:ACTIONS_TYPE.GET_USERS, users} as const
 }
-//--------------
-export type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
-
-export const setCurrentPageAC=(page:number)=> {
+export const setCurrentPage=(page:number)=> {
     return {type:ACTIONS_TYPE.SET_CURRENT_PAGE, page} as const
 }
-
-//--------------
-export type SetTotalCountActionType = ReturnType<typeof setTotalCountAC>
-
-export const setTotalCountAC=(count:number)=> {
+export const setTotalCount=(count:number)=> {
     return {type:ACTIONS_TYPE.SET_TOTAL_COUNT, count} as const
 }
-//----------------------------
-export type setLoadingStatusActionType = ReturnType<typeof setLoadingStatusAC>
-
-export const setLoadingStatusAC=(status:boolean)=> {
-    return {type:ACTIONS_TYPE.SET_LOADIND_STATUS, status} as const
+export const setLoadingStatus=(status:boolean)=> {
+    return {type:ACTIONS_TYPE.SET_LOADING_STATUS, status} as const
 }
+

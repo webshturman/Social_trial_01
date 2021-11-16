@@ -5,16 +5,16 @@ import {Button} from "@material-ui/core";
 import {UserType} from "../../api/user-api";
 
 type SingleUserType = UserType & {
-    toFollow: (isFollow: boolean, userID: number) => void
+    followUser: (isFollow: boolean, userID: number) => void
 }
 export const User: FC<SingleUserType> = (
     {
         id, name, photos,
-        followed, toFollow, status
+        followed, followUser, status
     }) => {
     const photoPath = photos.small !==null  ? photos.small : 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/4/2020/05/woman-wearing-white-knitted-dress-709790-2-450x320.jpg'
     const setToFollow =()=> {
-        toFollow(!followed, id)
+        followUser(!followed, id)
     }
 
     return (

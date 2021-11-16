@@ -39,7 +39,8 @@ export const MyPosts:React.FC = () => {
                 </form>
             </Container>
             <div>
-                {posts.map(post=> <Post avatar={post.avatar} id={post.id} likeCounts={post.likeCounts} message={post.message} key={post.id}/>)}
+                {posts.length && posts.map(post=> <Post avatar={post.avatar} id={post.id}
+                                        likeCounts={post.likeCounts} message={post.message} key={post.id}/>)}
             </div>
         </div>
     )

@@ -4,13 +4,14 @@ import {Button, LinearProgress} from "@material-ui/core";
 import React, {FC} from "react";
 import {UserType} from "../../api/user-api";
 
+
 type UsersCType = {
     getUsersForCurrentPage: (pageNumber: number) => void
     totalCount: number
     pageSize: number
     currentPage: number
     users: Array<UserType>
-    toFollow: (isFollow: boolean, userID: number) => void
+    followUser: (isFollow: boolean, userID: number) => void
     loadingStatus:boolean
 }
 
@@ -20,7 +21,7 @@ export const UsersC: FC<UsersCType> = ({
                                            pageSize,
                                            currentPage,
                                            users,
-                                           toFollow,
+                                           followUser,
                                            loadingStatus
                                        }) => {
 
@@ -41,7 +42,7 @@ export const UsersC: FC<UsersCType> = ({
             <div className={s.usersList}>
                 {users.map(user => <User id={user.id} name={user.name} photos={user.photos}
                                                followed={user.followed} key={user.id}
-                                               toFollow={toFollow}
+                                                followUser={followUser}
                                                status={user.status}
                                                uniqueUrlName={user.uniqueUrlName}/>)}
             </div>
