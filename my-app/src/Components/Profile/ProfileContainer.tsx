@@ -1,31 +1,46 @@
-
+import React from "react";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
-import {addPostAC} from "../redux/actions";
+import {getProfile} from "../redux/actions";
 import {AppRootStateType} from "../redux/store";
-import {ProfilePageType} from "../redux/profile-reducer";
 import {Profile} from "./Profile";
-//-------------------------------------------------------------------------------------------
-export type mapStateToPropsType = {
-    posts:ProfilePageType
+import {ProfileType, UsersAPI} from "../../api/user-api";
+import {Dispatch} from "redux";
+
+
+export class ProfileContainer extends React.Component<ProfileContainerType,AppRootStateType>{
+
+    componentDidMount() {
+        UsersAPI.getProfile()
+            .then((res) => {
+                this.props.getUserProfile(res.data)
+            })
+    };
+
+    render(){
+        return <Profile profile={this.props.profile}/>
+    }
 }
 
-export type mapDispatchPropsType = {
-    addPost: (newText:string)=> void
-}
-export type ProfilePostType = mapDispatchPropsType & mapStateToPropsType
-//------------------------------------------------------------------------------------------------------
 
 const mapStateToProps =(state:AppRootStateType):mapStateToPropsType=> {
     return {
-        posts: state.profile
+        profile: state.profile.profile
     }
 }
 const mapDispatchToProps =(dispatch:Dispatch):mapDispatchPropsType=> {
     return {
-        addPost(newText:string) {
-            dispatch(addPostAC(newText))
+        getUserProfile(profile:ProfileType){
+            dispatch(getProfile(profile))
         }
     }
 }
-export const ProfileConnector = connect(mapStateToProps,mapDispatchToProps)(Profile)
+export const ProfileConnector = connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)
+
+export type mapStateToPropsType = {
+    profile:ProfileType
+}
+
+export type mapDispatchPropsType = {
+    getUserProfile: (profile:ProfileType)=> void
+}
+export type ProfileContainerType = mapDispatchPropsType & mapStateToPropsType

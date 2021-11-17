@@ -1,4 +1,4 @@
-import {UserType} from "../../api/user-api";
+import {ProfileType, UserType} from "../../api/user-api";
 
 
 export enum ACTIONS_TYPE {
@@ -6,15 +6,19 @@ export enum ACTIONS_TYPE {
     SEND_MESSAGE = 'Messages/SEND_MESSAGE ',
     FOLLOW_USER = 'Users/FOLLOW_USER',
     GET_USERS = 'Users/GET_USERS',
+    GET_PROFILE='ProfileInfo/GET_PROFILE',
     SET_CURRENT_PAGE = 'Users/SET_CURRENT_PAGE',
     SET_TOTAL_COUNT = 'Users/SET_TOTAL_COUNT',
     SET_LOADING_STATUS = 'Users/SET_LOADING_STATUS',
 }
 //----------------------------PROFILE-----------------------------
-export type AddPostActionType = ReturnType<typeof addPostAC>
+export type ProfileActionType = ReturnType<typeof addPostAC> | ReturnType<typeof getProfile>
 
 export const addPostAC = (newText:string) => {
     return {type:ACTIONS_TYPE.ADD_POST, newText} as const
+}
+export const getProfile = (profile:ProfileType) => {
+    return {type:ACTIONS_TYPE.GET_PROFILE, profile} as const
 }
 //-------------------------MESSAGES---------------------------------
 

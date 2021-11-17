@@ -12,6 +12,10 @@ const instance = axios.create({
 export const UsersAPI = {
     getUsers(page:number, count:number){
        return instance.get<GetUsersType>(`users?page=${page}&count=${count}`)
+    },
+    getProfile(){
+        // return instance.get<ProfileType>(`profile/${userId}`)
+        return instance.get<ProfileType>(`profile/22`)
     }
 }
 
@@ -26,30 +30,30 @@ export type UserType={
     uniqueUrlName: null
     photos: {
         small: null | string
-        large: null
+        large: null | string
     }
     status: null
     followed: boolean
 }
-//
-// export type ProfileType={
-//     aboutMe: "я круто чувак 1001%",
-//     contacts: {
-//         facebook: "facebook.com",
-//         website: null,
-//         vk: "vk.com/dimych",
-//         twitter: "https://twitter.com/@sdf",
-//         instagram: "instagra.com/sds",
-//         youtube: null,
-//         github: "github.com",
-//         mainLink: null
-//     },
-//     lookingForAJob: true,
-//     lookingForAJobDescription: "не ищу, а дурачусь",
-//     fullName: "samurai dimych",
-//     userId: 2,
-//     photos: {
-//         small: "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
-//         large: "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
-//     }
-// }
+
+export type ProfileType={
+    aboutMe: string,
+    contacts: {
+        facebook: string,
+        website: string | null,
+        vk: string,
+        twitter: string,
+        instagram: string,
+        youtube: string | null,
+        github: string,
+        mainLink: string | null,
+    },
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    fullName: string,
+    userId: number,
+    photos: {
+        small: null | string,
+        large: null | string
+    }
+}

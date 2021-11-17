@@ -2,14 +2,13 @@ import React from 'react'
 import './App.css';
 import {Header} from "./Components/Header/Header";
 import {NavBar} from "./Components/NavBar/NavBar";
-import {Profile} from "./Components/Profile/Profile";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {UsersConnector} from "./Components/Users/UsersContainer";
-
+import {ProfileConnector, ProfileContainer} from "./Components/Profile/ProfileContainer";
 
 
 //------------------------------------------------------------------------------------
@@ -21,7 +20,8 @@ export const App = () => {
                 <NavBar/>
                 <div className={'content'}>
                     <Route path={'/dialogs'} render={() => <Dialogs/>}/>
-                    <Route path={'/profile'} render={() => <Profile/>}/>
+                    {/*@ts-ignore*/}
+                    <Route path={'/profile'} render={() => <ProfileConnector/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/settings'} render={() => <Settings/>}/>

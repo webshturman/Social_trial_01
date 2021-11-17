@@ -1,9 +1,11 @@
-import {ACTIONS_TYPE, AddPostActionType} from "./actions";
+import {ACTIONS_TYPE, ProfileActionType} from "./actions";
 import {v1} from "uuid";
+import {ProfileType} from "../../api/user-api";
 
 //-----------------------------------------------------------------
 export type ProfilePageType = {
     posts: Array<PostType>
+    profile: ProfileType
 }
 export type PostType = {
     id: string
@@ -12,6 +14,8 @@ export type PostType = {
     likeCounts: number
 }
 //------------------------------------------------------------------------------------
+
+
 const InitialState: ProfilePageType ={
     posts: [
         {
@@ -26,10 +30,31 @@ const InitialState: ProfilePageType ={
             message: 'Nice to see you again',
             likeCounts: 20
         },
-    ]
+    ],
+    // profile: {aboutMe: "я круто чувак 1001%",
+    //     contacts: {
+    //         facebook: "facebook.com",
+    //         website: null,
+    //         vk: "vk.com/dimych",
+    //         twitter: "https://twitter.com/@sdf",
+    //         instagram: "instagra.com/sds",
+    //         youtube: null,
+    //         github: "github.com",
+    //         mainLink: null
+    //     },
+    //     "lookingForAJob": true,
+    //     "lookingForAJobDescription": "не ищу, а дурачусь",
+    //     "fullName": "samurai dimych",
+    //     "userId": 2,
+    //     "photos": {
+    //         "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
+    //         "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
+    //     }}
+    // @ts-ignore
+    profile:null,
 }
 
-export const profileReducer =(state = InitialState,action:AddPostActionType):ProfilePageType=>{
+export const profileReducer =(state = InitialState,action:ProfileActionType):ProfilePageType=>{
     switch (action.type) {
         case ACTIONS_TYPE.ADD_POST:
             let newPost: PostType = {
@@ -40,7 +65,8 @@ export const profileReducer =(state = InitialState,action:AddPostActionType):Pro
             };
             return {...state, posts:[...state.posts,newPost]}
 
-
+        case ACTIONS_TYPE.GET_PROFILE:
+            return {...state, profile:action.profile}
         default:
             return state
     }

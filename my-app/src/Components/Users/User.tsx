@@ -3,6 +3,7 @@ import React, {FC} from 'react';
 import s from './Users.module.css'
 import {Button} from "@material-ui/core";
 import {UserType} from "../../api/user-api";
+import { NavLink } from 'react-router-dom';
 
 type SingleUserType = UserType & {
     followUser: (isFollow: boolean, userID: number) => void
@@ -20,9 +21,12 @@ export const User: FC<SingleUserType> = (
     return (
         <div className={s.UserBlock} key={id}>
             <div className={s.followImgBlock}>
-                <div>
-                    <img src={photoPath} className={s.userImg} alt=""/>
-                </div>
+                <NavLink to={'/profile'}>
+                    <div>
+                        <img src={photoPath} className={s.userImg} alt=""/>
+                    </div>
+                </NavLink>
+
                 <div>
                     <Button variant="contained" color="primary" size={'small'} onClick={setToFollow}>
                         {followed ? 'UNFOLLOW' : 'FOLLOW'}

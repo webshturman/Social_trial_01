@@ -1,15 +1,17 @@
 import React from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {ProfileType} from "../../api/user-api";
 
-import {ProfilePostType} from "./ProfileContainer";
+export type ProfileInfoType={
+    profile:ProfileType
+}
 
 
-
-export const Profile:React.FC = () => {
+export const Profile:React.FC<ProfileInfoType> = ({profile}) => {
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo profile={profile}/>
             <MyPosts/>
         </div>
     )
