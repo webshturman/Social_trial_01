@@ -8,12 +8,6 @@ import {LinearProgress} from "@material-ui/core";
 // }
 
 export const ProfileInfo:React.FC<ProfileInfoType> = ({profile}) => {
-    // useEffect(()=>{
-    //     UsersAPI.getProfile()
-    //         .then(res=> {
-    //             console.log(res.data)
-    //         })
-    // },[])
     if(!profile){
         return <LinearProgress/>
     }

@@ -4,7 +4,6 @@ import {getProfile} from "../redux/actions";
 import {AppRootStateType} from "../redux/store";
 import {Profile} from "./Profile";
 import {ProfileType, UsersAPI} from "../../api/user-api";
-import {Dispatch} from "redux";
 
 
 export class ProfileContainer extends React.Component<ProfileContainerType,AppRootStateType>{
@@ -12,7 +11,7 @@ export class ProfileContainer extends React.Component<ProfileContainerType,AppRo
     componentDidMount() {
         UsersAPI.getProfile()
             .then((res) => {
-                this.props.getUserProfile(res.data)
+                this.props.getProfile(res.data)
             })
     };
 
@@ -27,20 +26,20 @@ const mapStateToProps =(state:AppRootStateType):mapStateToPropsType=> {
         profile: state.profile.profile
     }
 }
-const mapDispatchToProps =(dispatch:Dispatch):mapDispatchPropsType=> {
-    return {
-        getUserProfile(profile:ProfileType){
-            dispatch(getProfile(profile))
-        }
-    }
-}
-export const ProfileConnector = connect(mapStateToProps,mapDispatchToProps)(ProfileContainer)
+// const mapDispatchToProps =(dispatch:Dispatch):mapDispatchPropsType=> {
+//     return {
+//         getUserProfile(profile:ProfileType){
+//             dispatch(getProfile(profile))
+//         }
+//     }
+// }
+export const ProfileConnector = connect(mapStateToProps,{getProfile})(ProfileContainer)
 
 export type mapStateToPropsType = {
     profile:ProfileType
 }
 
 export type mapDispatchPropsType = {
-    getUserProfile: (profile:ProfileType)=> void
+    getProfile: (profile:ProfileType)=> void
 }
 export type ProfileContainerType = mapDispatchPropsType & mapStateToPropsType
