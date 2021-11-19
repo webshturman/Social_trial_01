@@ -4,6 +4,7 @@ import {getProfile} from "../redux/actions";
 import {AppRootStateType} from "../redux/store";
 import {Profile} from "./Profile";
 import {ProfileType, UsersAPI} from "../../api/user-api";
+import { withRouter } from "react-router-dom";
 
 
 export class ProfileContainer extends React.Component<ProfileContainerType,AppRootStateType>{
@@ -26,14 +27,10 @@ const mapStateToProps =(state:AppRootStateType):mapStateToPropsType=> {
         profile: state.profile.profile
     }
 }
-// const mapDispatchToProps =(dispatch:Dispatch):mapDispatchPropsType=> {
-//     return {
-//         getUserProfile(profile:ProfileType){
-//             dispatch(getProfile(profile))
-//         }
-//     }
-// }
-export const ProfileConnector = connect(mapStateToProps,{getProfile})(ProfileContainer)
+const withUrlData = withRouter(ProfileContainer)
+export const ProfileConnector = connect(mapStateToProps,{getProfile})(withUrlData)
+
+
 
 export type mapStateToPropsType = {
     profile:ProfileType
@@ -42,4 +39,5 @@ export type mapStateToPropsType = {
 export type mapDispatchPropsType = {
     getProfile: (profile:ProfileType)=> void
 }
+
 export type ProfileContainerType = mapDispatchPropsType & mapStateToPropsType
