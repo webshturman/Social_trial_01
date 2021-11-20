@@ -17,11 +17,11 @@ export const User: FC<SingleUserType> = (
     const setToFollow =()=> {
         followUser(!followed, id)
     }
-
+    console.log(id)
     return (
         <div className={s.UserBlock} key={id}>
             <div className={s.followImgBlock}>
-                <NavLink to={'/profile'}>
+                <NavLink to={`/profile/${id}`}>
                     <div>
                         <img src={photoPath} className={s.userImg} alt=""/>
                     </div>

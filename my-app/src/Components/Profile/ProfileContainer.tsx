@@ -10,7 +10,9 @@ import {RouteComponentProps, withRouter } from "react-router-dom";
 export class ProfileContainer extends React.Component<PropsType,AppRootStateType>{
 
     componentDidMount() {
+        debugger
         let userId=this.props.match.params.userId
+        if(!userId) userId = '2'
         UsersAPI.getProfile(userId)
             .then((res) => {
                 this.props.getProfile(res.data)

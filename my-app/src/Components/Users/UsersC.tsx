@@ -27,7 +27,7 @@ export const UsersC: FC<UsersCType> = ({
 
     let pagesAmount = Math.ceil(totalCount / pageSize);
     let pages = [];
-    for (let i = 1; i < pagesAmount && i < 20; i += 1) {
+    for (let i = 3000; i < pagesAmount && i < 3010; i += 1) {
         pages.push(i)
     };
 
