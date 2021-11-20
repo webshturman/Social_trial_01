@@ -4,13 +4,14 @@ import {getProfile} from "../redux/actions";
 import {AppRootStateType} from "../redux/store";
 import {Profile} from "./Profile";
 import {ProfileType, UsersAPI} from "../../api/user-api";
-import { withRouter } from "react-router-dom";
+import {RouteComponentProps, withRouter } from "react-router-dom";
 
 
-export class ProfileContainer extends React.Component<ProfileContainerType,AppRootStateType>{
+export class ProfileContainer extends React.Component<PropsType,AppRootStateType>{
 
     componentDidMount() {
-        UsersAPI.getProfile()
+        let userId=this.props.match.params.userId
+        UsersAPI.getProfile(userId)
             .then((res) => {
                 this.props.getProfile(res.data)
             })
@@ -39,5 +40,9 @@ export type mapStateToPropsType = {
 export type mapDispatchPropsType = {
     getProfile: (profile:ProfileType)=> void
 }
+type PathParamsType = {
+    userId:string
+}
 
 export type ProfileContainerType = mapDispatchPropsType & mapStateToPropsType
+export type PropsType = RouteComponentProps<PathParamsType> & ProfileContainerType

@@ -13,9 +13,9 @@ export const UsersAPI = {
     getUsers(page:number, count:number){
        return instance.get<GetUsersType>(`users?page=${page}&count=${count}`)
     },
-    getProfile(){
-        // return instance.get<ProfileType>(`profile/${userId}`)
-        return instance.get<ProfileType>(`profile/22`)
+    getProfile(userId:string){
+        return instance.get<ProfileType>(`profile/${userId}`)
+        // return instance.get<ProfileType>(`profile/22`)
     }
 }
 

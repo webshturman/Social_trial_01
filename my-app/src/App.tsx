@@ -20,8 +20,8 @@ export const App = () => {
                 <NavBar/>
                 <div className={'content'}>
                     <Route path={'/dialogs'} render={() => <Dialogs/>}/>
-                    {/*@ts-ignore*/}
-                    <Route path={'/profile'} render={() => <ProfileConnector/>}/>
+                    {/*<Route path={`/profile/:${userId}?`} render={() => <ProfileConnector/>}/>*/}
+                    <Route path={'/profile/:userId?'} render={() => <ProfileConnector/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/settings'} render={() => <Settings/>}/>

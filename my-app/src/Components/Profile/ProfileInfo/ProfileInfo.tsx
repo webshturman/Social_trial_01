@@ -3,9 +3,6 @@ import React from "react";
 import {ProfileInfoType} from "../Profile";
 import {LinearProgress} from "@material-ui/core";
 
-// type ProfileInfoType={
-//     profile:ProfileType
-// }
 
 export const ProfileInfo:React.FC<ProfileInfoType> = ({profile}) => {
     if(!profile){
