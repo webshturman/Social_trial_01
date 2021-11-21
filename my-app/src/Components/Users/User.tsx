@@ -17,7 +17,6 @@ export const User: FC<SingleUserType> = (
     const setToFollow =()=> {
         followUser(!followed, id)
     }
-    console.log(id)
     return (
         <div className={s.UserBlock} key={id}>
             <div className={s.followImgBlock}>

@@ -9,6 +9,7 @@ import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {UsersConnector} from "./Components/Users/UsersContainer";
 import {ProfileConnector, ProfileContainer} from "./Components/Profile/ProfileContainer";
+import {AuthDataConnector, HeaderContainer} from "./Components/Header/HeaderContainer";
 
 
 //------------------------------------------------------------------------------------
@@ -16,11 +17,10 @@ export const App = () => {
     return (
         <BrowserRouter>
             <div className={'app-wrapper'}>
-                <Header/>
+                <AuthDataConnector/>
                 <NavBar/>
                 <div className={'content'}>
                     <Route path={'/dialogs'} render={() => <Dialogs/>}/>
-                    {/*<Route path={'/profile'} render={() => <ProfileConnector/>}/>*/}
                     <Route path={'/profile/:userId?'} render={() => <ProfileConnector/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>

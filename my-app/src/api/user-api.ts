@@ -16,6 +16,9 @@ export const UsersAPI = {
     getProfile(userId:string){
         return instance.get<ProfileType>(`profile/${userId}`)
         // return instance.get<ProfileType>(`profile/22`)
+    },
+    getLoginData(){
+        return instance.get<GetLoginDataType<AuthDataType>>(`auth/me`)
     }
 }
 
@@ -56,4 +59,16 @@ export type ProfileType={
         small: null | string,
         large: null | string
     }
+}
+
+export type GetLoginDataType<T={}>={
+    resultCode: number
+    fieldsErrors: string[]
+    messages: string[]
+    data: T
+}
+export type AuthDataType={
+    id:number | null
+    email:string | null
+    login:string | null
 }
