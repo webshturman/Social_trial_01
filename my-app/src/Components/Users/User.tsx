@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 
 import s from './Users.module.css'
 import {Button} from "@material-ui/core";
-import {UserType} from "../../api/user-api";
+import {UsersAPI, UserType} from "../../api/user-api";
 import { NavLink } from 'react-router-dom';
 
 type SingleUserType = UserType & {
@@ -15,7 +15,20 @@ export const User: FC<SingleUserType> = (
     }) => {
     const photoPath = photos.small !==null  ? photos.small : 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/4/2020/05/woman-wearing-white-knitted-dress-709790-2-450x320.jpg'
     const setToFollow =()=> {
-        followUser(!followed, id)
+        UsersAPI.setFollowStatus(id)
+            .then(res=>{
+                if(res.data.resultCode===0){
+                    followUser(true,id)
+                }
+            })
+    }
+    const setUnFollow =()=> {
+        UsersAPI.deleteFollowStatus(id)
+            .then(res=>{
+                if(res.data.resultCode===0){
+                    followUser(false,id)
+                }
+            })
     }
     return (
         <div className={s.UserBlock} key={id}>
@@ -27,7 +40,8 @@ export const User: FC<SingleUserType> = (
                 </NavLink>
 
                 <div>
-                    <Button variant="contained" color="primary" size={'small'} onClick={setToFollow}>
+                    <Button variant="contained" color="primary" size={'small'}
+                            onClick={followed ? setUnFollow : setToFollow}>
                         {followed ? 'UNFOLLOW' : 'FOLLOW'}
                     </Button>
                 </div>

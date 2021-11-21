@@ -18,8 +18,14 @@ export const UsersAPI = {
         // return instance.get<ProfileType>(`profile/22`)
     },
     getLoginData(){
-        return instance.get<GetLoginDataType<AuthDataType>>(`auth/me`)
-    }
+        return instance.get<ResponseType<AuthDataType>>(`auth/me`)
+    },
+    setFollowStatus(userId:number){
+        return instance.post<ResponseType<UserType>>(`follow/${userId}`)
+    },
+    deleteFollowStatus(userId:number){
+        return instance.delete<ResponseType<UserType>>(`follow/${userId}`)
+    },
 }
 
 type GetUsersType={
@@ -61,7 +67,7 @@ export type ProfileType={
     }
 }
 
-export type GetLoginDataType<T={}>={
+export type ResponseType<T={}>={
     resultCode: number
     fieldsErrors: string[]
     messages: string[]
