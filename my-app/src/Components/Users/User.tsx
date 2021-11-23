@@ -13,7 +13,7 @@ export const User: FC<SingleUserType> = (
         id, name, photos,
         followed, followUser, status
     }) => {
-    const photoPath = photos.small !==null  ? photos.small : 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/4/2020/05/woman-wearing-white-knitted-dress-709790-2-450x320.jpg'
+    const photo = photos.small !==null  ? photos.small : 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/4/2020/05/woman-wearing-white-knitted-dress-709790-2-450x320.jpg'
     const setToFollow =()=> {
         UsersAPI.setFollowStatus(id)
             .then(res=>{
@@ -35,7 +35,7 @@ export const User: FC<SingleUserType> = (
             <div className={s.followImgBlock}>
                 <NavLink to={`/profile/${id}`}>
                     <div>
-                        <img src={photoPath} className={s.userImg} alt=""/>
+                        <img src={photo} className={s.userImg} alt=""/>
                     </div>
                 </NavLink>
 
