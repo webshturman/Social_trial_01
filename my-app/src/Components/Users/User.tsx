@@ -2,33 +2,26 @@ import React, {FC} from 'react';
 
 import s from './Users.module.css'
 import {Button} from "@material-ui/core";
-import {UsersAPI, UserType} from "../../api/user-api";
-import { NavLink } from 'react-router-dom';
+import {UserType} from "../../api/user-api";
+import {NavLink} from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {toFollow, toUnFollow} from "../redux/users-reducer";
 
-type SingleUserType = UserType & {
-    followUser: (isFollow: boolean, userID: number) => void
-}
-export const User: FC<SingleUserType> = (
+
+export const User: FC<UserType> = (
     {
         id, name, photos,
-        followed, followUser, status
+        followed, status
     }) => {
+
+    const dispatch = useDispatch()
     const photo = photos.small !==null  ? photos.small : 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/4/2020/05/woman-wearing-white-knitted-dress-709790-2-450x320.jpg'
+
     const setToFollow =()=> {
-        UsersAPI.setFollowStatus(id)
-            .then(res=>{
-                if(res.data.resultCode===0){
-                    followUser(true,id)
-                }
-            })
+        dispatch(toFollow(id))
     }
     const setUnFollow =()=> {
-        UsersAPI.deleteFollowStatus(id)
-            .then(res=>{
-                if(res.data.resultCode===0){
-                    followUser(false,id)
-                }
-            })
+        dispatch(toUnFollow(id))
     }
     return (
         <div className={s.UserBlock} key={id}>

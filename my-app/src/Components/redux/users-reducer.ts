@@ -1,5 +1,13 @@
-import {ACTIONS_TYPE, CommonUsersActionType} from "./actions";
-import {UserType} from "../../api/user-api";
+import {
+    ACTIONS_TYPE,
+    CommonUsersActionType,
+    followUser,
+    getUsersFromApi, setCurrentPage,
+    setLoadingStatus,
+    setTotalCount
+} from "./actions";
+import {UsersAPI, UserType} from "../../api/user-api";
+import {AppThunk} from "./store";
 
 const InitialState:InitialStateUsersType = {
     items:[],
@@ -23,6 +31,51 @@ export const usersReducer = (state:InitialStateUsersType=InitialState, action:Co
         case ACTIONS_TYPE.SET_LOADING_STATUS:
             return {...state, loadingStatus:action.status}
         default: return state
+    }
+}
+
+export const toFollow =(userID:number):AppThunk=>async dispatch=>{
+    try{
+        const res = await UsersAPI.setFollowStatus(userID)
+        if(res.data.resultCode===0){
+            dispatch(followUser(true,userID))
+        }
+    } catch (e) {
+
+    }
+}
+
+export const toUnFollow =(userID:number):AppThunk=>async dispatch=>{
+    try{
+        const res = await UsersAPI.deleteFollowStatus(userID)
+        if(res.data.resultCode===0){
+            dispatch(followUser(false,userID))
+        }
+    } catch (e) {
+
+    }
+}
+
+export const setUsers =(page:number, count:number):AppThunk=>async dispatch=>{
+    dispatch(setLoadingStatus(true))
+    try{
+        const res = await UsersAPI.getUsers(page,count)
+        dispatch(getUsersFromApi(res.data.items))
+        dispatch(setTotalCount(res.data.totalCount))
+        dispatch(setLoadingStatus(false))
+    } catch (e) {
+
+    }
+}
+export const setUsersForCurrentPage =(page:number, count:number):AppThunk=>async dispatch=>{
+    dispatch(setCurrentPage(page))
+    dispatch(setLoadingStatus(true))
+    try{
+        const res = await UsersAPI.getUsers(page,count)
+        dispatch(getUsersFromApi(res.data.items))
+        dispatch(setLoadingStatus(false))
+    } catch (e) {
+
     }
 }
 

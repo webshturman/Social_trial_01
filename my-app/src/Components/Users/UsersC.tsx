@@ -11,7 +11,6 @@ type UsersCType = {
     pageSize: number
     currentPage: number
     users: Array<UserType>
-    followUser: (isFollow: boolean, userID: number) => void
     loadingStatus:boolean
 }
 
@@ -21,13 +20,12 @@ export const UsersC: FC<UsersCType> = ({
                                            pageSize,
                                            currentPage,
                                            users,
-                                           followUser,
                                            loadingStatus
                                        }) => {
 
     let pagesAmount = Math.ceil(totalCount / pageSize);
     let pages = [];
-    for (let i = 3000; i < pagesAmount && i < 3010; i += 1) {
+    for (let i = 1; i < pagesAmount && i < 21; i += 1) {
         pages.push(i)
     };
 
@@ -42,7 +40,6 @@ export const UsersC: FC<UsersCType> = ({
             <div className={s.usersList}>
                 {users.map(user => <User id={user.id} name={user.name} photos={user.photos}
                                                followed={user.followed} key={user.id}
-                                                followUser={followUser}
                                                status={user.status}
                                                uniqueUrlName={user.uniqueUrlName}/>)}
             </div>

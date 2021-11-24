@@ -7,10 +7,6 @@ import {AppRootStateType} from "../redux/store";
 import {sendMessageAC} from "../redux/actions";
 
 
-//-------------------------------------------------------------------------------------------
-// export type mapStateToPropsType = {
-//     dialogPage:DialogPageType
-// }
 export type mapDispatchPropsType = {
     sendMessage: (newMessage:string)=> void
 }

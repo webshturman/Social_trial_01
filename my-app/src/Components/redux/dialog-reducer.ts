@@ -1,20 +1,7 @@
 import {ACTIONS_TYPE,  SendMessageActionType} from "./actions";
 import {v1} from "uuid";
 
-//----------------------------------------------------------------------
-export type DialogPageType = {
-    senders: Array<senderType>
-    messages: Array<MessagesType>
-}
-export type senderType = {
-    id: string
-    name: string
-    avatar?: string
-}
-export type MessagesType = {
-    id: string
-    message: string
-}
+
 //-----------------------------------------------------------------------------------
 const InitialState: DialogPageType = {
     senders: [
@@ -65,4 +52,19 @@ export const dialogReducer = (state = InitialState, action: SendMessageActionTyp
         default:
             return state
     }
+}
+
+
+export type DialogPageType = {
+    senders: senderType[]
+    messages: MessagesType[]
+}
+export type senderType = {
+    id: string
+    name: string
+    avatar?: string
+}
+export type MessagesType = {
+    id: string
+    message: string
 }

@@ -15,16 +15,18 @@ export const UsersAPI = {
     },
     getProfile(userId:string){
         return instance.get<ProfileType>(`profile/${userId}`)
-        // return instance.get<ProfileType>(`profile/22`)
-    },
-    getLoginData(){
-        return instance.get<ResponseType<AuthDataType>>(`auth/me`)
     },
     setFollowStatus(userId:number){
         return instance.post<ResponseType<UserType>>(`follow/${userId}`)
     },
     deleteFollowStatus(userId:number){
         return instance.delete<ResponseType<UserType>>(`follow/${userId}`)
+    },
+}
+
+export const AuthAPI = {
+    getLoginData(){
+        return instance.get<ResponseType<AuthDataType>>(`auth/me`)
     },
 }
 

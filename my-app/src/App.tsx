@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css';
-import {Header} from "./Components/Header/Header";
 import {NavBar} from "./Components/NavBar/NavBar";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
@@ -8,8 +7,8 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {UsersConnector} from "./Components/Users/UsersContainer";
-import {ProfileConnector, ProfileContainer} from "./Components/Profile/ProfileContainer";
-import {AuthDataConnector, HeaderContainer} from "./Components/Header/HeaderContainer";
+import {ProfileConnector} from "./Components/Profile/ProfileContainer";
+import {AuthDataConnector} from "./Components/Header/HeaderContainer";
 
 
 //------------------------------------------------------------------------------------

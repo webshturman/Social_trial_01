@@ -1,9 +1,9 @@
 import {AppRootStateType} from "../redux/store";
-import {followUser, getUsersFromApi, setCurrentPage, setLoadingStatus, setTotalCount} from "../redux/actions";
 import {connect} from "react-redux";
-import {UsersAPI, UserType} from "../../api/user-api";
+import {UserType} from "../../api/user-api";
 import React from "react";
 import {UsersC} from "./UsersC";
+import {setUsers, setUsersForCurrentPage} from "../redux/users-reducer";
 
 
 export class UsersContainer extends React.Component<UsersCommonType, AppRootStateType> {
@@ -16,28 +16,16 @@ export class UsersContainer extends React.Component<UsersCommonType, AppRootStat
     //         })
     // }
     componentDidMount() {
-        this.props.setLoadingStatus(true)
-        UsersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then((res) => {
-                this.props.getUsersFromApi(res.data.items)
-                this.props.setTotalCount(res.data.totalCount)
-                this.props.setLoadingStatus(false)
-            })
+        this.props.setUsers(this.props.currentPage, this.props.pageSize)
     };
 
     getUsersForCurrentPage = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.setLoadingStatus(true)
-        UsersAPI.getUsers(pageNumber, this.props.pageSize)
-            .then((res) => {
-                this.props.getUsersFromApi(res.data.items)
-                this.props.setLoadingStatus(false)
-            })
+        this.props.setUsersForCurrentPage(pageNumber, this.props.pageSize)
     }
 
     render() {
         return <UsersC getUsersForCurrentPage={this.getUsersForCurrentPage} users={this.props.users}
-                       followUser={this.props.followUser} totalCount={this.props.totalCount}
+                       totalCount={this.props.totalCount}
                        currentPage={this.props.currentPage} pageSize={this.props.pageSize}
                        loadingStatus={this.props.loadingStatus}/>
     }
@@ -54,7 +42,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     }
 }
 export const UsersConnector = connect(mapStateToProps, {
-    followUser, getUsersFromApi, setCurrentPage, setTotalCount, setLoadingStatus
+    setUsersForCurrentPage,setUsers
 })(UsersContainer)
 
 
@@ -67,10 +55,7 @@ export type mapStateToPropsType = {
 }
 
 export type mapDispatchPropsType = {
-    followUser: (isFollow: boolean, userID: number) => void
-    getUsersFromApi: (users: Array<UserType>) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalCount: (totalCount: number) => void
-    setLoadingStatus: (status: boolean) => void
+    setUsersForCurrentPage:(page:number, count:number)=>void
+    setUsers:(page:number, count:number)=>void
 }
 export type UsersCommonType = mapDispatchPropsType & mapStateToPropsType

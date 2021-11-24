@@ -1,19 +1,7 @@
-import {ACTIONS_TYPE, ProfileActionType} from "./actions";
+import {ACTIONS_TYPE, getProfile, ProfileActionType} from "./actions";
 import {v1} from "uuid";
-import {ProfileType} from "../../api/user-api";
-
-//-----------------------------------------------------------------
-export type ProfilePageType = {
-    posts: Array<PostType>
-    profile: ProfileType
-}
-export type PostType = {
-    id: string
-    avatar: string
-    message: string
-    likeCounts: number
-}
-//------------------------------------------------------------------------------------
+import {ProfileType, UsersAPI} from "../../api/user-api";
+import {AppThunk} from "./store";
 
 
 const InitialState: ProfilePageType ={
@@ -70,4 +58,25 @@ export const profileReducer =(state = InitialState,action:ProfileActionType):Pro
         default:
             return state
     }
+}
+
+export const getProfileData =(userID:string):AppThunk=>async dispatch=>{
+    try{
+        const res = await UsersAPI.getProfile(userID)
+        dispatch(getProfile(res.data))
+    } catch (e) {
+
+    }
+}
+
+//-----------------------------------------------------------------
+export type ProfilePageType = {
+    posts: Array<PostType>
+    profile: ProfileType
+}
+export type PostType = {
+    id: string
+    avatar: string
+    message: string
+    likeCounts: number
 }

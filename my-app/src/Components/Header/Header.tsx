@@ -11,7 +11,6 @@ import {AuthDataCommonType} from "./HeaderContainer";
 // }
 
 export const Header: React.FC<AuthDataCommonType> = ({data,isAuth}) => {
-    console.log(data)
     return  <>
         <header className={s.header}>
             <img src="https://mythemestore.com/beehive-preview/wp-content/uploads/2020/07/logo-icon.svg" alt=""/>
