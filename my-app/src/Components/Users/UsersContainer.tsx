@@ -4,9 +4,11 @@ import {UserType} from "../../api/user-api";
 import React from "react";
 import {UsersC} from "./UsersC";
 import {setUsers, setUsersForCurrentPage} from "../redux/users-reducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
-export class UsersContainer extends React.Component<UsersCommonType, AppRootStateType> {
+class UsersContainer extends React.Component<UsersCommonType, AppRootStateType> {
 
     // constructor(props: UsersCommonType) {
     //     super(props)
@@ -41,10 +43,14 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
         loadingStatus: state.users.loadingStatus
     }
 }
-export const UsersConnector = connect(mapStateToProps, {
-    setUsersForCurrentPage,setUsers
-})(UsersContainer)
+// export const UsersConnector = withAuthRedirect(connect(mapStateToProps, {
+//     setUsersForCurrentPage,setUsers
+// })(UsersContainer))
 
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {setUsersForCurrentPage,setUsers}),
+    withAuthRedirect
+)(UsersContainer)
 
 export type mapStateToPropsType = {
     users: Array<UserType>

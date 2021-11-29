@@ -3,7 +3,7 @@ import React, {FC} from 'react';
 import s from './Users.module.css'
 import {Button} from "@material-ui/core";
 import {UserType} from "../../api/user-api";
-import {NavLink} from 'react-router-dom';
+import {NavLink, useParams} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {toFollow, toUnFollow} from "../redux/users-reducer";
 
