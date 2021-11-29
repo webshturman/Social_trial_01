@@ -2,6 +2,7 @@ import s from "../Profile.module.css";
 import React from "react";
 import {ProfileInfoType} from "../Profile";
 import {LinearProgress} from "@material-ui/core";
+import {ProfileStatus} from "./ProfileStatus";
 
 
 export const ProfileInfo:React.FC<ProfileInfoType> = ({profile}) => {
@@ -19,6 +20,7 @@ export const ProfileInfo:React.FC<ProfileInfoType> = ({profile}) => {
                 <div>
                     <div className={s.name}>{profile.fullName}</div>
                     <div>{profile.aboutMe}</div>
+                    <ProfileStatus/>
                 </div>
             </div>
         </div>
