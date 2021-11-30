@@ -1,4 +1,4 @@
-import {ACTIONS_TYPE, getProfile, ProfileActionType} from "./actions";
+import {ACTIONS_TYPE, getProfile, ProfileActionType, setUserStatus} from "./actions";
 import {v1} from "uuid";
 import {ProfileType, UsersAPI} from "../../api/user-api";
 import {AppThunk} from "./store";
@@ -40,6 +40,8 @@ const InitialState: ProfilePageType ={
     //     }}
     // @ts-ignore
     profile:null,
+    status:''
+
 }
 
 export const profileReducer =(state = InitialState,action:ProfileActionType):ProfilePageType=>{
@@ -68,11 +70,21 @@ export const getProfileData =(userID:string):AppThunk=>async dispatch=>{
 
     }
 }
+export const getUserStatusData =(userID:string):AppThunk=>async dispatch=>{
+    try{
+        const res = await UsersAPI.getUserStatus(userID)
+        // @ts-ignore
+        dispatch(setUserStatus(res.status))
+    } catch (e) {
+
+    }
+}
 
 //-----------------------------------------------------------------
 export type ProfilePageType = {
     posts: Array<PostType>
     profile: ProfileType
+    status:string
 }
 export type PostType = {
     id: string

@@ -11,9 +11,12 @@ export enum ACTIONS_TYPE {
     SET_TOTAL_COUNT = 'Users/SET_TOTAL_COUNT',
     SET_LOADING_STATUS = 'Users/SET_LOADING_STATUS',
     GET_AUTH_DATA = 'Header/GET_AUTH_DATA',
+    SET_USER_STATUS = 'profile/SET_USER_STATUS',
+    UPDATE_USER_STATUS = 'profile/UPDATE_USER_STATUS',
 }
 //----------------------------PROFILE-----------------------------
-export type ProfileActionType = ReturnType<typeof addPostAC> | ReturnType<typeof getProfile>
+export type ProfileActionType = ReturnType<typeof addPostAC> | ReturnType<typeof getProfile> |
+    ReturnType<typeof setUserStatus>
 
 export const addPostAC = (newText:string) => {
     return {type:ACTIONS_TYPE.ADD_POST, newText} as const
@@ -21,6 +24,12 @@ export const addPostAC = (newText:string) => {
 export const getProfile = (profile:ProfileType) => {
     return {type:ACTIONS_TYPE.GET_PROFILE, profile} as const
 }
+export const setUserStatus = (status: string) => {
+    return {type:ACTIONS_TYPE.SET_USER_STATUS, status} as const
+}
+// export const updateUserStatus = (profile:ProfileType) => {
+//     return {type:ACTIONS_TYPE.UPDATE_USER_STATUS, profile} as const
+// }
 //-------------------------MESSAGES---------------------------------
 
 export type SendMessageActionType = ReturnType<typeof sendMessageAC>

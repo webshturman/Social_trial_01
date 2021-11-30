@@ -22,6 +22,12 @@ export const UsersAPI = {
     deleteFollowStatus(userId:number){
         return instance.delete<ResponseType<UserType>>(`follow/${userId}`)
     },
+    getUserStatus(userId:string){
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateUserStatus(status:string){
+        return instance.put<ResponseType>('profile/status', {status})
+    },
 }
 
 export const AuthAPI = {

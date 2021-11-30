@@ -5,13 +5,14 @@ import {ProfileType} from "../../api/user-api";
 
 export type ProfileInfoType={
     profile:ProfileType
+    status:string
 }
 
 
-export const Profile:React.FC<ProfileInfoType> = ({profile}) => {
+export const Profile:React.FC<ProfileInfoType> = ({profile,status}) => {
     return (
         <div>
-            <ProfileInfo profile={profile}/>
+            <ProfileInfo profile={profile} status={status}/>
             <MyPosts/>
         </div>
     )
