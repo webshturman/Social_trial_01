@@ -73,8 +73,16 @@ export const getProfileData =(userID:string):AppThunk=>async dispatch=>{
 export const getUserStatusData =(userID:string):AppThunk=>async dispatch=>{
     try{
         const res = await UsersAPI.getUserStatus(userID)
-        // @ts-ignore
-        dispatch(setUserStatus(res.status))
+        dispatch(setUserStatus(res.data))
+    } catch (e) {
+
+    }
+}
+
+export const updateUserStatusData =(status:string):AppThunk=>async dispatch=>{
+    try{
+        const res = await UsersAPI.updateUserStatus(status)
+        dispatch(setUserStatus(status))
     } catch (e) {
 
     }
