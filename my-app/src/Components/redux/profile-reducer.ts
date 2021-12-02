@@ -57,6 +57,8 @@ export const profileReducer =(state = InitialState,action:ProfileActionType):Pro
 
         case ACTIONS_TYPE.GET_PROFILE:
             return {...state, profile:action.profile}
+        case ACTIONS_TYPE.SET_USER_STATUS:
+            return {...state, status:action.status}
         default:
             return state
     }
@@ -82,7 +84,10 @@ export const getUserStatusData =(userID:string):AppThunk=>async dispatch=>{
 export const updateUserStatusData =(status:string):AppThunk=>async dispatch=>{
     try{
         const res = await UsersAPI.updateUserStatus(status)
-        dispatch(setUserStatus(status))
+        if(res.data.resultCode === 0){
+            dispatch(setUserStatus(status))
+        }
+
     } catch (e) {
 
     }

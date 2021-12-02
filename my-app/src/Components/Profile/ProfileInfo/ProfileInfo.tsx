@@ -5,7 +5,7 @@ import {LinearProgress} from "@material-ui/core";
 import {ProfileStatus} from "./ProfileStatus";
 
 
-export const ProfileInfo:React.FC<ProfileInfoType> = ({profile,status}) => {
+export const ProfileInfo:React.FC<ProfileInfoType> = ({profile,status,handleUpdateStatus}) => {
     if(!profile){
         return <LinearProgress/>
     }
@@ -20,7 +20,7 @@ export const ProfileInfo:React.FC<ProfileInfoType> = ({profile,status}) => {
                 <div>
                     <div className={s.name}>{profile.fullName}</div>
                     <div>{profile.aboutMe}</div>
-                    <ProfileStatus status={status}/>
+                    <ProfileStatus status={status} handleUpdateStatus={handleUpdateStatus}/>
                 </div>
             </div>
         </div>
