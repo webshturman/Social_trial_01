@@ -34,6 +34,9 @@ export const AuthAPI = {
     getLoginData(){
         return instance.get<ResponseType<AuthDataType>>(`auth/me`)
     },
+    setLoginData(data:LoginDataType){
+        return instance.post<ResponseType<{userId:number}>>('auth/login',data)
+    },
 }
 
 type GetUsersType={
@@ -85,4 +88,12 @@ export type AuthDataType={
     id:number | null
     email:string | null
     login:string | null
+}
+export type LoginDataType = FormikErrorType & {
+    captcha?: boolean
+}
+export type FormikErrorType ={
+    email: string
+    password: string
+    rememberMe: boolean
 }

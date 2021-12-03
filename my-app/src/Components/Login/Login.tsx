@@ -9,15 +9,16 @@ import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
+import {FormikErrorType} from "../../api/user-api";
+import {setAuthData} from "../redux/auth-reducer";
+import {useDispatch} from "react-redux";
 
-type FormikErrorType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
-}
 
 
 export const Login = () => {
+
+    const dispatch=useDispatch()
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -25,7 +26,7 @@ export const Login = () => {
             rememberMe: false
         },
         validate: (values) => {
-            const errors: FormikErrorType = {};
+            const errors: Partial<FormikErrorType> = {};
             if (!values.email) {
                 errors.email = 'Email Required';
             }
@@ -38,7 +39,7 @@ export const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            // dispatch(setLoginData(values))
+            dispatch(setAuthData(values))
             formik.resetForm()
         },
 

@@ -10,8 +10,9 @@ export enum ACTIONS_TYPE {
     SET_CURRENT_PAGE = 'Users/SET_CURRENT_PAGE',
     SET_TOTAL_COUNT = 'Users/SET_TOTAL_COUNT',
     SET_LOADING_STATUS = 'Users/SET_LOADING_STATUS',
-    GET_AUTH_DATA = 'Header/GET_AUTH_DATA',
+    GET_AUTH_DATA = 'auth/GET_AUTH_DATA',
     SET_USER_STATUS = 'profile/SET_USER_STATUS',
+    SET_LOGIN_STATUS = 'auth/SET_USER_STATUS',
     UPDATE_USER_STATUS = 'profile/UPDATE_USER_STATUS',
 }
 //----------------------------PROFILE-----------------------------
@@ -60,8 +61,11 @@ export const setLoadingStatus=(status:boolean)=> {
 }
 
 //---------------------------AUTH DATA----------------------------------
-export type AuthDataActionType = ReturnType<typeof getAuthData>
+export type AuthDataActionType = ReturnType<typeof getAuthData> | ReturnType<typeof setLoginStatus>
 
 export const getAuthData =(data:AuthDataType)=> {
     return {type:ACTIONS_TYPE.GET_AUTH_DATA, data} as const
+}
+export const setLoginStatus =(isAuth:boolean)=> {
+    return {type:ACTIONS_TYPE.SET_LOGIN_STATUS, isAuth} as const
 }

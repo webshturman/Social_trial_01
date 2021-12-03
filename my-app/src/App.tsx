@@ -21,11 +21,10 @@ export const App = () => {
             <NavBar/>
             <div className={'content'}>
                 <Routes>
-                    <Route path={'/dialogs'} element={<Dialogs/>}/>
-                    {/*<Route path={'/profile/:userId'} element={<ProfileOnHooks/>}/>*/}
-                    {/*<Route path={'/profile'} element={<ProfileOnHooks/>}/>*/}
+                    <Route path={'/'} element={<ProfileConnector/>}/>
                     <Route path={'/profile/:userId'} element={<ProfileConnector/>}/>
                     <Route path={'/profile'} element={<ProfileConnector/>}/>
+                    <Route path={'/dialogs'} element={<Dialogs/>}/>
                     <Route path={'/news'} element={<News/>}/>
                     <Route path={'/music'} element={<Music/>}/>
                     <Route path={'/settings'} element={<Settings/>}/>
