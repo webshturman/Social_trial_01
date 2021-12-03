@@ -16,3 +16,9 @@
     color: white;
     text-decoration: none;
 }
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}

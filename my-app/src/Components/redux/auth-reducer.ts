@@ -22,7 +22,7 @@ export const authReducer = (state:InitialStateAuthType=InitialState, action:Auth
 
 export const toBeAuthorized =():AppThunk=>async dispatch=>{
     try{
-        const res = await AuthAPI.getLoginData()
+        const res = await AuthAPI.authMe()
         if(res.data.resultCode===0){
             dispatch(getAuthData(res.data.data))
         }
@@ -32,7 +32,7 @@ export const toBeAuthorized =():AppThunk=>async dispatch=>{
 }
 export const setAuthData =(data:LoginDataType):AppThunk=>async dispatch=>{
     try{
-        const res = await AuthAPI.setLoginData(data)
+        const res = await AuthAPI.authLogin(data)
         if(res.data.resultCode===0){
             dispatch(setLoginStatus(true))
         }
@@ -40,6 +40,17 @@ export const setAuthData =(data:LoginDataType):AppThunk=>async dispatch=>{
 
     }
 }
+export const setLogOutData =():AppThunk=>async dispatch=>{
+    try{
+        const res = await AuthAPI.authLogout()
+        if(res.data.resultCode===0){
+            dispatch(setLoginStatus(false))
+        }
+    } catch (error) {
+
+    }
+}
+
 type InitialStateAuthType = AuthDataType & {
     isAuth:boolean
 }

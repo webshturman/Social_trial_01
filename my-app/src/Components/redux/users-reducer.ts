@@ -62,9 +62,10 @@ export const setUsers =(page:number, count:number):AppThunk=>async dispatch=>{
         const res = await UsersAPI.getUsers(page,count)
         dispatch(getUsersFromApi(res.data.items))
         dispatch(setTotalCount(res.data.totalCount))
-        dispatch(setLoadingStatus(false))
     } catch (e) {
 
+    } finally{
+        dispatch(setLoadingStatus(false))
     }
 }
 export const setUsersForCurrentPage =(page:number, count:number):AppThunk=>async dispatch=>{
@@ -73,9 +74,10 @@ export const setUsersForCurrentPage =(page:number, count:number):AppThunk=>async
     try{
         const res = await UsersAPI.getUsers(page,count)
         dispatch(getUsersFromApi(res.data.items))
-        dispatch(setLoadingStatus(false))
     } catch (e) {
 
+    }finally{
+        dispatch(setLoadingStatus(false))
     }
 }
 

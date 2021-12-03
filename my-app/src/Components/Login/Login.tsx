@@ -11,12 +11,14 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import {FormikErrorType} from "../../api/user-api";
 import {setAuthData} from "../redux/auth-reducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../redux/store";
+import {Navigate} from "react-router-dom";
 
 
 
 export const Login = () => {
-
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     const dispatch=useDispatch()
 
     const formik = useFormik({
@@ -44,7 +46,7 @@ export const Login = () => {
         },
 
     })
-    // if (isLoggedIn) return <Navigate to={'/'}/>
+    if (isAuth) return <Navigate to={'/'}/>
 
     return <Grid container justifyContent={'center'}>
         <Grid item justifyContent={'center'}>
