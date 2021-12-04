@@ -6,6 +6,7 @@ import {ProfileType} from "../../api/user-api";
 import {useParams} from "react-router-dom";
 import {getProfileData, getUserStatusData, updateUserStatusData} from "../redux/profile-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {toBeAuthorized} from "../redux/auth-reducer";
 
 
 
@@ -14,6 +15,7 @@ class ProfileContainer extends React.Component<PropsType,AppRootStateType>{
     componentDidMount() {
         let userId=this.props.userId
         if(!userId) userId = '19644'
+        this.props.toBeAuthorized()
         this.props.getProfileData(userId)
         this.props.getUserStatusData(userId)
     };
@@ -41,7 +43,7 @@ const withRouter = (WrappedComponent:any) => (props:any) => {
 
 const withUrlData = withRouter(ProfileContainer);
 export const ProfileConnector = withAuthRedirect(connect(mapStateToProps,
-    {getProfileData,getUserStatusData,updateUserStatusData})(withUrlData))
+    {getProfileData,getUserStatusData,updateUserStatusData,toBeAuthorized})(withUrlData))
 
 
 export type mapStateToPropsType = {
@@ -53,6 +55,7 @@ export type mapDispatchPropsType = {
     getProfileData: (userId:string)=> void
     getUserStatusData: (userId:string)=> void
     updateUserStatusData: (status:string)=> void
+    toBeAuthorized: ()=>void
 }
 type PathParamsType = {
     userId:string

@@ -1,4 +1,5 @@
 import {AuthDataType, ProfileType, UserType} from "../../api/user-api";
+import {InitialStateAuthType} from "./auth-reducer";
 
 
 export enum ACTIONS_TYPE {
@@ -61,9 +62,9 @@ export const setLoadingStatus=(status:boolean)=> {
 }
 
 //---------------------------AUTH DATA----------------------------------
-export type AuthDataActionType = ReturnType<typeof getAuthData> | ReturnType<typeof setLoginStatus>
+export type AuthDataActionType = ReturnType<typeof setAuthData> | ReturnType<typeof setLoginStatus>
 
-export const getAuthData =(data:AuthDataType)=> {
+export const setAuthData =(data:InitialStateAuthType)=> {
     return {type:ACTIONS_TYPE.GET_AUTH_DATA, data} as const
 }
 export const setLoginStatus =(isAuth:boolean)=> {

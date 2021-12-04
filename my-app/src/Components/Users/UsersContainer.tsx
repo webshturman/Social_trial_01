@@ -60,7 +60,7 @@ export type mapStateToPropsType = {
     loadingStatus: boolean
 }
 
-export type mapDispatchPropsType = {
+type mapDispatchPropsType = {
     setUsersForCurrentPage:(page:number, count:number)=>void
     setUsers:(page:number, count:number)=>void
 }

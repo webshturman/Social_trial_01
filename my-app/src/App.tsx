@@ -7,9 +7,10 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {AuthDataConnector} from "./Components/Header/HeaderContainer";
-import {Login} from "./Components/Login/Login";
+
 import UsersContainer from "./Components/Users/UsersContainer";
 import {ProfileConnector} from "./Components/Profile/ProfileContainer";
+import {Login} from "./Components/Login/Login";
 
 
 //------------------------------------------------------------------------------------

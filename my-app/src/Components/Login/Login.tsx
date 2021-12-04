@@ -10,10 +10,11 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import {FormikErrorType} from "../../api/user-api";
-import {setAuthData} from "../redux/auth-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../redux/store";
 import {Navigate} from "react-router-dom";
+import {toBeLoggedIn} from "../redux/auth-reducer";
+
 
 
 
@@ -41,7 +42,7 @@ export const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            dispatch(setAuthData(values))
+            dispatch(toBeLoggedIn(values))
             formik.resetForm()
         },
 
