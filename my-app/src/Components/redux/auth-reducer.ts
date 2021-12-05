@@ -3,6 +3,7 @@ import {AuthAPI, AuthDataType, LoginDataType} from "../../api/user-api";
 import {AppThunk} from "./store";
 
 
+
 const InitialState:InitialStateAuthType = {
     id:null,
     email:null,

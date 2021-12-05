@@ -88,7 +88,7 @@ export type ResponseType<T={}>={
     data: T
 }
 export type AuthDataType={
-    id:number | null
+    id:string
     email:string | null
     login:string | null
 }

@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component<PropsType,AppRootStateType>{
 
     componentDidMount() {
         let userId=this.props.userId
-        if(!userId) userId = '19644'
+        if(!userId) userId = this.props.authorizedId
         this.props.toBeAuthorized()
         this.props.getProfileData(userId)
         this.props.getUserStatusData(userId)
@@ -30,7 +30,8 @@ class ProfileContainer extends React.Component<PropsType,AppRootStateType>{
 const mapStateToProps =(state:AppRootStateType):mapStateToPropsType=> {
     return {
         profile: state.profile.profile,
-        status: state.profile.status
+        status: state.profile.status,
+        authorizedId: state.auth.id
     }
 }
 
@@ -49,6 +50,7 @@ export const ProfileConnector = withAuthRedirect(connect(mapStateToProps,
 export type mapStateToPropsType = {
     profile:ProfileType
     status:string
+    authorizedId: string
 }
 
 export type mapDispatchPropsType = {
