@@ -9,11 +9,12 @@ import FormGroup from "@material-ui/core/FormGroup";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
-import {FormikErrorType} from "../../api/user-api";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../redux/store";
 import {Navigate} from "react-router-dom";
 import {toBeLoggedIn} from "../redux/auth-reducer";
+import {FormikErrorType} from "../../api/user-api";
+
 
 
 
@@ -21,6 +22,8 @@ import {toBeLoggedIn} from "../redux/auth-reducer";
 
 export const Login = () => {
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
+    // @ts-ignore
+    const errorMessage = useSelector<AppRootStateType, string | null>(state => state.auth.errorMessage)
     const dispatch=useDispatch()
 
     const formik = useFormik({
@@ -79,6 +82,7 @@ export const Login = () => {
                             // value={formik.values.password}
                             // onBlur={formik.handleBlur}
                         />
+                        {errorMessage ? <div style={{color: "red"}}>{errorMessage}</div> : ''}
                         <FormControlLabel label={'Remember me'} control={
                             <Checkbox checked={formik.values.rememberMe}
                                       {...formik.getFieldProps("rememberMe")}/>

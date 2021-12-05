@@ -1,4 +1,4 @@
-import {ACTIONS_TYPE, AuthDataActionType, setAuthData, setLoginStatus} from "./actions";
+import {ACTIONS_TYPE, AuthDataActionType, setAuthData, setErrorMessage, setLoginStatus} from "./actions";
 import {AuthAPI, AuthDataType, LoginDataType} from "../../api/user-api";
 import {AppThunk} from "./store";
 
@@ -9,6 +9,7 @@ const InitialState:InitialStateAuthType = {
     email:null,
     login:null,
     isAuth:false,
+    errorMessage:null
 }
 
 export const authReducer = (state:InitialStateAuthType=InitialState, action:AuthDataActionType):InitialStateAuthType=>{
@@ -17,6 +18,8 @@ export const authReducer = (state:InitialStateAuthType=InitialState, action:Auth
             return {...state, ...action.data};
         case ACTIONS_TYPE.SET_LOGIN_STATUS:
             return {...state, isAuth:action.isAuth};
+        case ACTIONS_TYPE.SET_ERROR_MESSAGE:
+            return {...state, errorMessage:action.message};
         default: return state
     }
 }
@@ -36,7 +39,10 @@ export const toBeLoggedIn =(data:LoginDataType):AppThunk=>async dispatch=>{
     try{
         const res = await AuthAPI.authLogin(data)
         if(res.data.resultCode===0){
+            dispatch(setErrorMessage(null))
             dispatch(setLoginStatus(true))
+        } else{
+            dispatch(setErrorMessage(res.data.messages[0]))
         }
     } catch (error) {
 
@@ -56,4 +62,5 @@ export const toBeLoggedOut =():AppThunk=>async dispatch=>{
 
 export type InitialStateAuthType = AuthDataType & {
     isAuth:boolean
+    errorMessage?:string | null
 }

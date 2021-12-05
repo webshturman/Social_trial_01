@@ -1,4 +1,4 @@
-import {AuthDataType, ProfileType, UserType} from "../../api/user-api";
+import {ProfileType, UserType} from "../../api/user-api";
 import {InitialStateAuthType} from "./auth-reducer";
 
 
@@ -14,7 +14,7 @@ export enum ACTIONS_TYPE {
     GET_AUTH_DATA = 'auth/GET_AUTH_DATA',
     SET_USER_STATUS = 'profile/SET_USER_STATUS',
     SET_LOGIN_STATUS = 'auth/SET_USER_STATUS',
-    UPDATE_USER_STATUS = 'profile/UPDATE_USER_STATUS',
+    SET_ERROR_MESSAGE = 'auth/SET_ERROR_MESSAGE',
 }
 //----------------------------PROFILE-----------------------------
 export type ProfileActionType = ReturnType<typeof addPostAC> | ReturnType<typeof getProfile> |
@@ -63,10 +63,14 @@ export const setLoadingStatus=(status:boolean)=> {
 
 //---------------------------AUTH DATA----------------------------------
 export type AuthDataActionType = ReturnType<typeof setAuthData> | ReturnType<typeof setLoginStatus>
+| ReturnType<typeof setErrorMessage>
 
 export const setAuthData =(data:InitialStateAuthType)=> {
     return {type:ACTIONS_TYPE.GET_AUTH_DATA, data} as const
 }
 export const setLoginStatus =(isAuth:boolean)=> {
     return {type:ACTIONS_TYPE.SET_LOGIN_STATUS, isAuth} as const
+}
+export const setErrorMessage =(message:string | null)=> {
+    return {type:ACTIONS_TYPE.SET_ERROR_MESSAGE, message} as const
 }
