@@ -7,12 +7,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../redux/store";
 import {DialogPageType} from "../redux/dialog-reducer";
 import {sendMessageAC} from "../redux/actions";
+import {Navigate} from "react-router-dom";
 
 
 
 export const Dialogs = () => {
 
     const {senders, messages} = useSelector<AppRootStateType, DialogPageType>(state=> state.dialog);
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     const dispatch = useDispatch();
 
     const EMPTY_STRING =''
@@ -25,6 +27,7 @@ export const Dialogs = () => {
         dispatch(sendMessageAC(inputValue))
         setInputValue(EMPTY_STRING)
     }
+    if (!isAuth) return <Navigate to={'/'}/>
     return (
         <div className={s.dialogs}>
             <ul className={`${s.item}  ${s.senders}`}>

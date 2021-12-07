@@ -15,7 +15,6 @@ class ProfileContainer extends React.Component<PropsType,AppRootStateType>{
     componentDidMount() {
         let userId=this.props.userId
         if(!userId) userId = this.props.authorizedId
-        // if(!userId) userId = '2'
         this.props.toBeAuthorized()
         this.props.getProfileData(userId)
         this.props.getUserStatusData(userId)
