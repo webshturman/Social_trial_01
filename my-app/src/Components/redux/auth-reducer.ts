@@ -1,4 +1,11 @@
-import {ACTIONS_TYPE, AuthDataActionType, setAuthData, setErrorMessage, setLoginStatus} from "./actions";
+import {
+    ACTIONS_TYPE,
+    AuthDataActionType,
+    getInitialized,
+    setAuthData,
+    setErrorMessage,
+    setLoginStatus
+} from "./actions";
 import {AuthAPI, AuthDataType, LoginDataType} from "../../api/user-api";
 import {AppThunk} from "./store";
 
@@ -30,7 +37,10 @@ export const toBeAuthorized =():AppThunk=>async dispatch=>{
         if(res.data.resultCode===0){
             const authData = {...res.data.data, isAuth:true}
             dispatch(setAuthData(authData))
+        } else{
+
         }
+        dispatch(getInitialized(true))
     } catch (error) {
 
     }

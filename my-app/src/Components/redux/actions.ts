@@ -15,6 +15,7 @@ export enum ACTIONS_TYPE {
     SET_USER_STATUS = 'profile/SET_USER_STATUS',
     SET_LOGIN_STATUS = 'auth/SET_USER_STATUS',
     SET_ERROR_MESSAGE = 'auth/SET_ERROR_MESSAGE',
+    GET_INITIALIZED ='loader/GET_INITIALIZED',
 }
 //----------------------------PROFILE-----------------------------
 export type ProfileActionType = ReturnType<typeof addPostAC> | ReturnType<typeof getProfile> |
@@ -73,4 +74,10 @@ export const setLoginStatus =(isAuth:boolean)=> {
 }
 export const setErrorMessage =(message:string | null)=> {
     return {type:ACTIONS_TYPE.SET_ERROR_MESSAGE, message} as const
+}
+//---------------------------LOADER----------------------------------
+export type LoaderActionType = ReturnType<typeof getInitialized>
+
+export const getInitialized =(initialized:boolean)=> {
+    return {type:ACTIONS_TYPE.GET_INITIALIZED, initialized} as const
 }

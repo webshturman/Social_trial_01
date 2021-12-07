@@ -11,13 +11,23 @@ import {AuthDataConnector} from "./Components/Header/HeaderContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import {ProfileConnector} from "./Components/Profile/ProfileContainer";
 import {Login} from "./Components/Login/Login";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./Components/redux/store";
 
 
 
 //------------------------------------------------------------------------------------
 export const App = () => {
+    const isInitialized = useSelector<AppRootStateType , boolean>(state=> state.loader.isInitialized)
+    const dispatch = useDispatch()
+    if (!isInitialized) {
+        return <div
+            style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+            <CircularProgress/>
+        </div>
+    }
     return (
-
         <div className={'app-wrapper'}>
             <AuthDataConnector/>
             <NavBar/>
