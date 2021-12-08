@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './App.css';
 import {NavBar} from "./Components/NavBar/NavBar";
 import {Route, Routes} from "react-router-dom";
@@ -14,6 +14,7 @@ import {Login} from "./Components/Login/Login";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./Components/redux/store";
+import {toBeAuthorized} from "./Components/redux/auth-reducer";
 
 
 
@@ -21,6 +22,10 @@ import {AppRootStateType} from "./Components/redux/store";
 export const App = () => {
     const isInitialized = useSelector<AppRootStateType , boolean>(state=> state.loader.isInitialized)
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(toBeAuthorized())
+    },[])
     if (!isInitialized) {
         return <div
             style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>

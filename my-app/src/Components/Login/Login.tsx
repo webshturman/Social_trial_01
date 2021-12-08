@@ -17,9 +17,6 @@ import {FormikErrorType} from "../../api/user-api";
 
 
 
-
-
-
 export const Login = () => {
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     // @ts-ignore

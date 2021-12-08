@@ -3,14 +3,14 @@ import {Header} from "./Header";
 import {AuthDataType} from "../../api/user-api";
 import {AppRootStateType} from "../redux/store";
 import {connect} from "react-redux";
-import {toBeAuthorized} from "../redux/auth-reducer";
+
 
 
 export class HeaderContainer extends React.Component<AuthDataCommonType, AppRootStateType>{
 
-    componentDidMount() {
-      this.props.toBeAuthorized()
-    };
+    // componentDidMount() {
+    //   this.props.toBeAuthorized()
+    // };
 
     render(){
         return <Header {...this.props}/>
@@ -23,7 +23,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
         isAuth:state.auth.isAuth
     }
 }
-export const AuthDataConnector = connect(mapStateToProps, {toBeAuthorized})(HeaderContainer)
+export const AuthDataConnector = connect(mapStateToProps)(HeaderContainer)
 
 
 export type mapStateToPropsType = {
@@ -31,7 +31,8 @@ export type mapStateToPropsType = {
     isAuth:boolean
 }
 
-export type mapDispatchPropsType = {
-    toBeAuthorized:()=>void
-}
-export type AuthDataCommonType = mapDispatchPropsType & mapStateToPropsType
+// export type mapDispatchPropsType = {
+//     toBeAuthorized:()=>void
+// }
+export type AuthDataCommonType = mapStateToPropsType
+// export type AuthDataCommonType = mapDispatchPropsType & mapStateToPropsType
