@@ -14,6 +14,7 @@ import {AppRootStateType} from "../redux/store";
 import {Navigate} from "react-router-dom";
 import {toBeLoggedIn} from "../redux/auth-reducer";
 import {FormikErrorType} from "../../api/user-api";
+import {LinearProgress} from "@material-ui/core";
 
 
 
@@ -48,6 +49,9 @@ export const Login = () => {
         },
 
     })
+    // if(!isAuth){
+    //     return <LinearProgress/>
+    // }
     if (isAuth) return <Navigate to={'/'}/>
 
     return <Grid container justifyContent={'center'}>

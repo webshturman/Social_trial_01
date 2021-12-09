@@ -25,28 +25,30 @@ export const App = () => {
 
     useEffect(()=>{
         dispatch(toBeAuthorized())
+        console.log('request')
     },[])
-    if (!isInitialized) {
-        return <div
-            style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
-            <CircularProgress/>
-        </div>
-    }
+    // if (!isInitialized) {
+    //     return <div
+    //         style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+    //         <CircularProgress/>
+    //     </div>
+    // }
     return (
         <div className={'app-wrapper'}>
             <AuthDataConnector/>
             <NavBar/>
             <div className={'content'}>
                 <Routes>
-                    <Route path={'/'} element={<ProfileConnector/>}/>
-                    <Route path={'/profile/:userId'} element={<ProfileConnector/>}/>
-                    <Route path={'/profile'} element={<ProfileConnector/>}/>
-                    <Route path={'/dialogs'} element={<Dialogs/>}/>
-                    <Route path={'/news'} element={<News/>}/>
-                    <Route path={'/music'} element={<Music/>}/>
-                    <Route path={'/settings'} element={<Settings/>}/>
-                    <Route path={'/users'} element={<UsersContainer/>}/>
-                    <Route path={'/login'} element={<Login/>}/>
+                    <Route path={'/'} element={<ProfileConnector />}/>
+                    <Route path={'/profile/:userId'} element={<ProfileConnector />}/>
+                    <Route path={'/profile'} element={<ProfileConnector />}/>
+                    <Route path={'/dialogs'} element={<Dialogs />}/>
+                    <Route path={'/news'} element={<News />}/>
+                    <Route path={'/music'} element={<Music />}/>
+                    <Route path={'/settings'} element={<Settings />}/>
+                    <Route path={'/users'} element={<UsersContainer />}/>
+                    <Route path={'/login'} element={<Login />}/>
+                    <Route path={'/Social_trial_01'} element={<ProfileConnector />}/>
                 </Routes>
             </div>
         </div>

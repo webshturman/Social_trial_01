@@ -37,10 +37,11 @@ export const toBeAuthorized =():AppThunk=>async dispatch=>{
         if(res.data.resultCode===0){
             const authData = {...res.data.data, isAuth:true}
             dispatch(setAuthData(authData))
+
         } else{
 
         }
-        dispatch(getInitialized(true))
+        // dispatch(getInitialized(true))
     } catch (error) {
 
     }

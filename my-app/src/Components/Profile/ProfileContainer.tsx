@@ -15,7 +15,6 @@ class ProfileContainer extends React.Component<PropsType,AppRootStateType>{
     componentDidMount() {
         let userId=this.props.userId
         if(!userId) userId = this.props.authorizedId
-        this.props.toBeAuthorized()
         this.props.getProfileData(userId)
         this.props.getUserStatusData(userId)
     };
@@ -44,7 +43,7 @@ const withRouter = (WrappedComponent:any) => (props:any) => {
 
 const withUrlData = withRouter(ProfileContainer);
 export const ProfileConnector = withAuthRedirect(connect(mapStateToProps,
-    {getProfileData,getUserStatusData,updateUserStatusData,toBeAuthorized})(withUrlData))
+    {getProfileData,getUserStatusData,updateUserStatusData})(withUrlData))
 
 
 export type mapStateToPropsType = {
@@ -57,7 +56,6 @@ type mapDispatchPropsType = {
     getProfileData: (userId:string | null)=> void
     getUserStatusData: (userId:string | null)=> void
     updateUserStatusData: (status:string)=> void
-    toBeAuthorized: ()=>void
 }
 type PathParamsType = {
     userId:string | null
