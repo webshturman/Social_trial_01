@@ -41,12 +41,12 @@ export const toBeAuthorized =():AppThunk=>async dispatch=>{
         } else{
 
         }
-        // dispatch(getInitialized(true))
+        dispatch(getInitialized(true))
     } catch (error) {
 
     }
 }
-export const toBeLoggedIn =(data:LoginDataType):AppThunk=>async dispatch=>{
+export const toBeLoggedIn = (data:LoginDataType):AppThunk=>async dispatch=>{
     try{
         const res = await AuthAPI.authLogin(data)
         if(res.data.resultCode===0){
