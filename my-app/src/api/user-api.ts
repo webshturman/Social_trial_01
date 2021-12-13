@@ -1,13 +1,4 @@
-import axios from "axios";
-
-
-const instance = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCredentials:true,
-    headers: {
-        'API-KEY': 'b8b0c036-4edd-4913-8c7f-79ccaeace603'
-    },
-})
+import { instance } from "./instance"
 
 export const UsersAPI = {
     getUsers(page:number, count:number){
@@ -27,18 +18,6 @@ export const UsersAPI = {
     },
     updateUserStatus(status:string){
         return instance.put<ResponseType>('profile/status', {status})
-    },
-}
-
-export const AuthAPI = {
-    authMe(){
-        return instance.get<ResponseType<AuthDataType>>(`auth/me`)
-    },
-    authLogin(data:LoginDataType){
-        return instance.post<ResponseType<{userId:number}>>('auth/login',data)
-    },
-    authLogout(){
-        return instance.delete<ResponseType>('auth/login')
     },
 }
 
