@@ -6,8 +6,9 @@ import {
     setErrorMessage,
     setLoginStatus
 } from "./actions";
-import {AuthAPI, AuthDataType, LoginDataType} from "../../api/user-api";
+import {AuthDataType, LoginDataType} from "../../api/user-api";
 import {AppThunk} from "./store";
+import { AuthAPI } from "../../api/auth-api";
 
 
 
