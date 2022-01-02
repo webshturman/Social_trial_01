@@ -13,8 +13,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../redux/store";
 import {Navigate} from "react-router-dom";
 import {toBeLoggedIn} from "../redux/auth-reducer";
-import {FormikErrorType} from "../../api/user-api";
-import {LinearProgress} from "@material-ui/core";
+import {FormikErrorType} from "../../api/types/userType";
+
+
 
 
 

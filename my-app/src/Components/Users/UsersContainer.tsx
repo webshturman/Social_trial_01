@@ -1,11 +1,11 @@
 import {AppRootStateType} from "../redux/store";
 import {connect} from "react-redux";
-import {UserType} from "../../api/user-api";
 import React from "react";
 import {UsersC} from "./UsersC";
 import {setUsers, setUsersForCurrentPage} from "../redux/users-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {UserType} from "../../api/types/userType";
 
 
 class UsersContainer extends React.Component<UsersCommonType, AppRootStateType> {

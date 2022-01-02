@@ -1,7 +1,8 @@
 import {ACTIONS_TYPE, getProfile, ProfileActionType, setUserStatus} from "./actions";
 import {v1} from "uuid";
-import {ProfileType, UsersAPI} from "../../api/user-api";
+import {UsersAPI} from "../../api/user-api";
 import {AppThunk} from "./store";
+import {ProfileType} from "../../api/types/userType";
 
 
 const InitialState: ProfilePageType ={

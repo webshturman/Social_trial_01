@@ -1,5 +1,6 @@
-import {ProfileType, UserType} from "../../api/user-api";
+
 import {InitialStateAuthType} from "./auth-reducer";
+import {ProfileType, UserType} from "../../api/types/userType";
 
 
 export enum ACTIONS_TYPE {

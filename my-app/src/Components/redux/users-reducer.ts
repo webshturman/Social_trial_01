@@ -6,8 +6,9 @@ import {
     setLoadingStatus,
     setTotalCount
 } from "./actions";
-import {UsersAPI, UserType} from "../../api/user-api";
+import {UsersAPI} from "../../api/user-api";
 import {AppThunk} from "./store";
+import {UserType} from "../../api/types/userType";
 
 const InitialState:InitialStateUsersType = {
     items:[],

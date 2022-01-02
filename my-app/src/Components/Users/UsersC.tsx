@@ -2,7 +2,8 @@ import s from "./Users.module.css";
 import {User} from "./User";
 import {Button, LinearProgress} from "@material-ui/core";
 import React, {FC} from "react";
-import {UserType} from "../../api/user-api";
+import {UserType} from "../../api/types/userType";
+
 
 
 type UsersCType = {

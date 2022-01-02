@@ -1,5 +1,5 @@
 import {instance} from "./instance";
-import {AuthDataType, LoginDataType, ResponseType} from "./user-api";
+import {AuthDataType, LoginDataType, ResponseType} from "./types/userType";
 
 export const AuthAPI = {
     authMe(){
