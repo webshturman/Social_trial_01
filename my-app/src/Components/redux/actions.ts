@@ -31,9 +31,7 @@ export const getProfile = (profile:ProfileType) => {
 export const setUserStatus = (status: string) => {
     return {type:ACTIONS_TYPE.SET_USER_STATUS, status} as const
 }
-// export const updateUserStatus = (profile:ProfileType) => {
-//     return {type:ACTIONS_TYPE.UPDATE_USER_STATUS, profile} as const
-// }
+
 //-------------------------MESSAGES---------------------------------
 
 export type SendMessageActionType = ReturnType<typeof sendMessageAC>
