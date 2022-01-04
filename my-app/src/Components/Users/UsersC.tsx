@@ -16,14 +16,13 @@ type UsersCType = {
 }
 
 export const UsersC: FC<UsersCType> = ({
-                                           getUsersForCurrentPage,
-                                           totalCount,
-                                           pageSize,
-                                           currentPage,
-                                           users,
-                                           loadingStatus
-                                       }) => {
-
+   getUsersForCurrentPage,
+   totalCount,
+   pageSize,
+   currentPage,
+   users,
+   loadingStatus
+}) => {
     let pagesAmount = Math.ceil(totalCount / pageSize);
     let pages = [];
     for (let i = 1; i < pagesAmount && i < 21; i += 1) {
