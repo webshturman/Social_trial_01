@@ -59,6 +59,8 @@ export const profileReducer =(state = InitialState,action:ProfileActionType):Pro
             return {...state, profile:action.profile}
         case ACTIONS_TYPE.SET_USER_STATUS:
             return {...state, status:action.status}
+        case ACTIONS_TYPE.CLEAR_PROFILE_DATA:
+            return InitialState
         default:
             return state
     }

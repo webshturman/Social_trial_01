@@ -1,14 +1,14 @@
 import s from "../Profile.module.css";
 import React from "react";
-import {ProfileInfoType} from "../Profile";
-import {LinearProgress} from "@material-ui/core";
 import {ProfileStatus} from "./ProfileStatus";
+import {AppRootStateType} from "../../redux/store";
+import {ProfileType} from "../../../api/types/userType";
+import {useSelector} from "react-redux";
 
 
-export const ProfileInfo:React.FC<ProfileInfoType> = ({profile,status,handleUpdateStatus}) => {
-    if(!profile){
-        return <LinearProgress/>
-    }
+
+export const ProfileInfo = () => {
+    const profile = useSelector<AppRootStateType, ProfileType>(state => state.profile.profile)
     return (
         <div>
             <div className={s.background}></div>
@@ -20,7 +20,7 @@ export const ProfileInfo:React.FC<ProfileInfoType> = ({profile,status,handleUpda
                 <div>
                     <div className={s.name}>{profile.fullName}</div>
                     <div>{profile.aboutMe}</div>
-                    <ProfileStatus status={status} handleUpdateStatus={handleUpdateStatus}/>
+                    <ProfileStatus />
                 </div>
             </div>
         </div>

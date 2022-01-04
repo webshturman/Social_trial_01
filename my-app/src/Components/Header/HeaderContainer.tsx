@@ -9,10 +9,6 @@ import {AuthDataType} from "../../api/types/userType";
 
 export class HeaderContainer extends React.Component<AuthDataCommonType, AppRootStateType>{
 
-    // componentDidMount() {
-    //   this.props.toBeAuthorized()
-    // };
-
     render(){
         return <Header {...this.props}/>
     }

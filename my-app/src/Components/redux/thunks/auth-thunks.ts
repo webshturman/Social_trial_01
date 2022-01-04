@@ -3,6 +3,7 @@ import {setAuthData, setErrorMessage, setLoginStatus} from "../actions/auth-acti
 import {AuthAPI} from "../../../api/auth-api";
 import {AppThunk} from "../store";
 import {LoginDataType} from "../../../api/types/userType";
+import {clearProfileData} from "../actions/profile-actions";
 
 export const toBeAuthorized =():AppThunk=>async dispatch=>{
     try{
@@ -38,6 +39,7 @@ export const toBeLoggedOut =():AppThunk=>async dispatch=>{
         if(res.data.resultCode===0){
             const cleanData = {id:null, email:null, login:null, isAuth:false}
             dispatch(setAuthData(cleanData))
+            dispatch(clearProfileData())
         }
     } catch (error) {
 

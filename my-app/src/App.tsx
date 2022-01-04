@@ -12,17 +12,19 @@ import UsersContainer from "./Components/Users/UsersContainer";
 import {Login} from "./Components/Login/Login";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {AppRootStateType} from "./Components/redux/store";
-import {ProfileConnector} from "./Components/Profile/ProfileContainer";
 import {toBeAuthorized} from "./Components/redux/thunks/auth-thunks";
+import {Profile} from "./Components/Profile/Profile";
 
 
 export const App = () => {
     const isInitialized = useSelector<AppRootStateType, boolean>(state => state.loader.isInitialized)
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     const dispatch = useDispatch()
+
 
     useEffect(() => {
         dispatch(toBeAuthorized())
-    }, [])
+    }, [isAuth])
     if (!isInitialized) {
         return <div
             style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
@@ -35,16 +37,16 @@ export const App = () => {
             <NavBar/>
             <div className={'content'}>
                 <Routes>
-                    <Route path={'/'} element={<ProfileConnector/>}/>
-                    <Route path={'/profile/:userId'} element={<ProfileConnector/>}/>
-                    <Route path={'/profile'} element={<ProfileConnector/>}/>
+                    <Route path={'/'} element={<Profile/>}/>
+                    <Route path={'/profile/:userId'} element={<Profile/>}/>
+                    <Route path={'/profile'} element={<Profile/>}/>
                     <Route path={'/dialogs'} element={<Dialogs/>}/>
                     <Route path={'/news'} element={<News/>}/>
                     <Route path={'/music'} element={<Music/>}/>
                     <Route path={'/settings'} element={<Settings/>}/>
                     <Route path={'/users'} element={<UsersContainer/>}/>
                     <Route path={'/login'} element={<Login/>}/>
-                    <Route path={'/Social_trial_01'} element={<ProfileConnector/>}/>
+                    <Route path={'/Social_trial_01'} element={<Profile/>}/>
                 </Routes>
             </div>
         </div>

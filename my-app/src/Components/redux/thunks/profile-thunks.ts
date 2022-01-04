@@ -2,10 +2,11 @@ import {AppThunk} from "../store";
 import {UsersAPI} from "../../../api/user-api";
 import {getProfile, setUserStatus} from "../actions/profile-actions";
 
-export const getProfileData =(userID:string):AppThunk=>async dispatch=>{
+export const getProfileData =(userID: string):AppThunk=>async dispatch=>{
     try{
         const res = await UsersAPI.getProfile(userID)
         dispatch(getProfile(res.data))
+        dispatch(getUserStatusData(userID))
     } catch (e) {
 
     }

@@ -1,20 +1,45 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ProfileType} from "../../api/types/userType";
+import {AppRootStateType} from "../redux/store";
+import {useDispatch, useSelector} from "react-redux";
+import {Navigate, useParams} from "react-router-dom";
+import {getProfileData} from "../redux/thunks/profile-thunks";
+import {LinearProgress} from "@material-ui/core";
 
 
-export type ProfileInfoType={
-    profile:ProfileType
-    status:string
-    handleUpdateStatus:(status:string)=> void
-}
+export const Profile = () => {
+    const profile = useSelector<AppRootStateType, ProfileType>(state => state.profile.profile)
+    const authorizedId = useSelector<AppRootStateType, string | null>(state => state.auth.id)
+    const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
+    const dispatch = useDispatch()
+    let {userId} = useParams()
+
+    useEffect(()=>{
+        if(!isAuth){
+            return
+        }
+        if(userId) {
+            dispatch(getProfileData(userId));
+        }
+        if(!userId && authorizedId){
+            dispatch(getProfileData(authorizedId))
+        }
+
+    },[isAuth,userId,authorizedId])
 
 
-export const Profile:React.FC<ProfileInfoType> = ({profile,status,handleUpdateStatus}) => {
+    if(!isAuth){
+        return <Navigate to={'/login'}/>
+    }
+    if(!profile){
+        return <LinearProgress/>
+    }
+
     return (
         <div>
-            <ProfileInfo profile={profile} status={status} handleUpdateStatus={handleUpdateStatus}/>
+            <ProfileInfo/>
             <MyPosts/>
         </div>
     )

@@ -1,12 +1,19 @@
 import React, {ChangeEvent, FC, useState} from "react";
+import {AppRootStateType} from "../../redux/store";
+import {useDispatch, useSelector} from "react-redux";
+import {ProfileType} from "../../../api/types/userType";
+import {updateUserStatusData} from "../../redux/thunks/profile-thunks";
 
-type ProfileStatusType = {
-    status:string
-    handleUpdateStatus:(status:string)=> void
-}
+// type ProfileStatusType = {
+//     status:string
+//     handleUpdateStatus:(status:string)=> void
+// }
 
 
-export const ProfileStatus: FC<ProfileStatusType> = ({status, handleUpdateStatus}) => {
+export const ProfileStatus = () => {
+    const status = useSelector<AppRootStateType, string>(state => state.profile.status)
+    const dispatch = useDispatch()
+
     const [editMode, setEditMode] = useState<boolean>(false)
     const [value, setValue] = useState<string>(status)
 
@@ -15,7 +22,7 @@ export const ProfileStatus: FC<ProfileStatusType> = ({status, handleUpdateStatus
     }
     const deActivateEditMode=()=>{
         setEditMode(false)
-        handleUpdateStatus(value)
+        dispatch(updateUserStatusData(value))
     }
     const setUpdatedStatus=(event:ChangeEvent<HTMLInputElement>)=>{
         setValue(event.currentTarget.value)
