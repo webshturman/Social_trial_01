@@ -2,9 +2,9 @@
 import {connect} from "react-redux";
 import {Dialogs} from "./Dialogs";
 import {Dispatch} from "redux";
-import {DialogPageType} from "../redux/dialog-reducer";
 import {AppRootStateType} from "../redux/store";
-import {sendMessageAC} from "../redux/actions";
+import {DialogPageType} from "../redux/reducers/dialog-reducer";
+import {sendMessageAC} from "../redux/actions/messages-actions";
 
 
 export type mapDispatchPropsType = {

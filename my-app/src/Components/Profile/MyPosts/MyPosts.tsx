@@ -5,8 +5,9 @@ import {Button, Container, Grid, TextField} from "@material-ui/core";
 
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
-import {PostType} from "../../redux/profile-reducer";
-import {addPostAC} from "../../redux/actions";
+import {addPostAC} from "../../redux/actions/profile-actions";
+import {PostType} from "../../redux/reducers/profile-reducer";
+
 
 //------------------------------------------------------------------------------------------
 

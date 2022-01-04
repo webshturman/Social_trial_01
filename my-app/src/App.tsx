@@ -8,13 +8,12 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {AuthDataConnector} from "./Components/Header/HeaderContainer";
-
 import UsersContainer from "./Components/Users/UsersContainer";
 import {Login} from "./Components/Login/Login";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {AppRootStateType} from "./Components/redux/store";
-import {toBeAuthorized} from "./Components/redux/auth-reducer";
 import {ProfileConnector} from "./Components/Profile/ProfileContainer";
+import {toBeAuthorized} from "./Components/redux/thunks/auth-thunks";
 
 
 export const App = () => {

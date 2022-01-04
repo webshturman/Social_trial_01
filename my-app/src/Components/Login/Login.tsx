@@ -12,11 +12,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../redux/store";
 import {Navigate} from "react-router-dom";
-import {toBeLoggedIn} from "../redux/auth-reducer";
 import {FormikErrorType} from "../../api/types/userType";
-
-
-
+import {toBeLoggedIn} from "../redux/thunks/auth-thunks";
 
 
 export const Login = () => {

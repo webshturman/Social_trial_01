@@ -2,7 +2,8 @@ import React from 'react'
 import s from './Header.module.css'
 import {AuthDataCommonType} from "./HeaderContainer";
 import {useDispatch} from "react-redux";
-import {toBeLoggedOut} from "../redux/auth-reducer";
+import {toBeLoggedOut} from "../redux/thunks/auth-thunks";
+
 
 export const Header: React.FC<AuthDataCommonType> = ({data,isAuth}) => {
     const dispatch = useDispatch()

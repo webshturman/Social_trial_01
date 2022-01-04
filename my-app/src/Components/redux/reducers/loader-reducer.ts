@@ -1,4 +1,6 @@
-import {ACTIONS_TYPE, LoaderActionType} from "./actions";
+import {LoaderActionType} from "../actions/loader-actions";
+import {ACTIONS_TYPE} from "../../../enums/action-types";
+
 
 export const InitialLoaderState:InitialLoaderStateType ={
     isInitialized:false,
@@ -13,8 +15,6 @@ export const loaderReducer = (state: InitialLoaderStateType  = InitialLoaderStat
             return state;
     }
 }
-
-//-------------------------------------------------------------------------------------
 
 
 export type InitialLoaderStateType={

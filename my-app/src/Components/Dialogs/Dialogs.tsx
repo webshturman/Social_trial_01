@@ -5,9 +5,10 @@ import {Sender} from "./Senders/Sender";
 import {Button, Grid, TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../redux/store";
-import {DialogPageType} from "../redux/dialog-reducer";
-import {sendMessageAC} from "../redux/actions";
+
 import {Navigate} from "react-router-dom";
+import {DialogPageType} from "../redux/reducers/dialog-reducer";
+import {sendMessageAC} from "../redux/actions/messages-actions";
 
 
 

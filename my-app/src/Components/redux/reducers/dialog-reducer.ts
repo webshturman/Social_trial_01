@@ -1,5 +1,7 @@
-import {ACTIONS_TYPE,  SendMessageActionType} from "./actions";
+
 import {v1} from "uuid";
+import {SendMessageActionType} from "../actions/messages-actions";
+import {ACTIONS_TYPE} from "../../../enums/action-types";
 
 
 //-----------------------------------------------------------------------------------

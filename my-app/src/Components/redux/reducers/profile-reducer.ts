@@ -1,8 +1,7 @@
-import {ACTIONS_TYPE, getProfile, ProfileActionType, setUserStatus} from "./actions";
 import {v1} from "uuid";
-import {UsersAPI} from "../../api/user-api";
-import {AppThunk} from "./store";
-import {ProfileType} from "../../api/types/userType";
+import {ProfileActionType} from "../actions/profile-actions";
+import {ACTIONS_TYPE} from "../../../enums/action-types";
+import {ProfileType} from "../../../api/types/userType";
 
 
 const InitialState: ProfilePageType ={
@@ -65,36 +64,7 @@ export const profileReducer =(state = InitialState,action:ProfileActionType):Pro
     }
 }
 
-export const getProfileData =(userID:string):AppThunk=>async dispatch=>{
-    try{
-        const res = await UsersAPI.getProfile(userID)
-        dispatch(getProfile(res.data))
-    } catch (e) {
 
-    }
-}
-export const getUserStatusData =(userID:string):AppThunk=>async dispatch=>{
-    try{
-        const res = await UsersAPI.getUserStatus(userID)
-        dispatch(setUserStatus(res.data))
-    } catch (e) {
-
-    }
-}
-
-export const updateUserStatusData =(status:string):AppThunk=>async dispatch=>{
-    try{
-        const res = await UsersAPI.updateUserStatus(status)
-        if(res.data.resultCode === 0){
-            dispatch(setUserStatus(status))
-        }
-
-    } catch (e) {
-
-    }
-}
-
-//-----------------------------------------------------------------
 export type ProfilePageType = {
     posts: Array<PostType>
     profile: ProfileType

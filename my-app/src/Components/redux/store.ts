@@ -1,17 +1,17 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {profileReducer} from "./profile-reducer";
-import {dialogReducer} from "./dialog-reducer";
-import {usersReducer} from "./users-reducer";
-import {authReducer} from "./auth-reducer";
+
 import thunk, {ThunkAction} from "redux-thunk";
-import {
-    AuthDataActionType,
-    CommonUsersActionType,
-    LoaderActionType,
-    ProfileActionType,
-    SendMessageActionType
-} from "./actions";
-import {loaderReducer} from "./loader-reducer";
+
+import {profileReducer} from "./reducers/profile-reducer";
+import {dialogReducer} from "./reducers/dialog-reducer";
+import {authReducer} from "./reducers/auth-reducer";
+import {usersReducer} from "./reducers/users-reducer";
+import {loaderReducer} from "./reducers/loader-reducer";
+import {ProfileActionType} from "./actions/profile-actions";
+import {SendMessageActionType} from "./actions/messages-actions";
+import {LoaderActionType} from "./actions/loader-actions";
+import {AuthDataActionType} from "./actions/auth-actions";
+import {CommonUsersActionType} from "./actions/user-actions";
 
 const rootReducer = combineReducers({
     profile:profileReducer,

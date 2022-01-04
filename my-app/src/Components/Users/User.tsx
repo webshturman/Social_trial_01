@@ -2,10 +2,10 @@ import React, {FC} from 'react';
 
 import s from './Users.module.css'
 import {Button} from "@material-ui/core";
-import {NavLink, useParams} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {useDispatch} from "react-redux";
-import {toFollow, toUnFollow} from "../redux/users-reducer";
 import {UserType} from "../../api/types/userType";
+import {toFollow, toUnFollow} from "../redux/thunks/users-thunks";
 
 
 export const User: FC<UserType> = (

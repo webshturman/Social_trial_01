@@ -3,9 +3,9 @@ import {connect} from "react-redux";
 import {AppRootStateType} from "../redux/store";
 import {Profile} from "./Profile";
 import {useParams} from "react-router-dom";
-import {getProfileData, getUserStatusData, updateUserStatusData} from "../redux/profile-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {ProfileType} from "../../api/types/userType";
+import {getProfileData, getUserStatusData, updateUserStatusData} from "../redux/thunks/profile-thunks";
 
 class ProfileContainer extends React.Component<PropsType,AppRootStateType>{
 

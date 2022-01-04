@@ -1,9 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from '../Dialogs.module.css'
-import {senderType} from "../../redux/dialog-reducer";
-
-
+import {senderType} from "../../redux/reducers/dialog-reducer";
 
 
 export const Sender: React.FC<senderType> = ({id, name, avatar}) => {

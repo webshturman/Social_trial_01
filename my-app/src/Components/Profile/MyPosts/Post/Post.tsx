@@ -2,9 +2,7 @@ import React from "react";
 import s from './Post.module.css'
 import {IconButton} from "@material-ui/core";
 import {ThumbUpAltSharp} from "@material-ui/icons";
-import {PostType} from "../../../redux/profile-reducer";
-
-
+import {PostType} from "../../../redux/reducers/profile-reducer";
 
 export const Post: React.FC<PostType> = (
     {
