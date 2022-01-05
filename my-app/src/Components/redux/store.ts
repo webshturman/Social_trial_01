@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 
 import thunk, {ThunkAction} from "redux-thunk";
 
@@ -20,7 +20,10 @@ const rootReducer = combineReducers({
     auth:authReducer,
     loader: loaderReducer,
 })
-export const store = createStore(rootReducer, applyMiddleware(thunk))
+
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
 

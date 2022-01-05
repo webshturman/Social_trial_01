@@ -1,13 +1,7 @@
 import React, {ChangeEvent, FC, useState} from "react";
 import {AppRootStateType} from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
-import {ProfileType} from "../../../api/types/userType";
 import {updateUserStatusData} from "../../redux/thunks/profile-thunks";
-
-// type ProfileStatusType = {
-//     status:string
-//     handleUpdateStatus:(status:string)=> void
-// }
 
 
 export const ProfileStatus = () => {
