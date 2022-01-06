@@ -6,15 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from "./Components/redux/store";
 import {HashRouter} from "react-router-dom";
+import {MainApp} from "./MainApp";
 
-ReactDOM.render(
-    <HashRouter>
-    <Provider store={store}>
-        <App/>
-    </Provider>
-    </HashRouter>,
-    document.getElementById('root')
-);
+ReactDOM.render(<MainApp/>, document.getElementById('root'));
 
 
 // If you want to start measuring performance in your app, pass a function

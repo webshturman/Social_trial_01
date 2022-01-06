@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {AppRootStateType} from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserStatusData} from "../../redux/thunks/profile-thunks";
