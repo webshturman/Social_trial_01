@@ -1,8 +1,8 @@
 import React from "react";
 // @ts-ignore
 import { create } from "react-test-renderer";
+import {renderComponent} from "../Profile/ProfileInfo/ProfileStatus.test";
 import {Header} from "./Header";
-import {HeaderContainer} from "./HeaderContainer";
 
 
 
@@ -16,9 +16,9 @@ describe("Header component", () => {
             email:'kirill.zarya@inbox.ru',
             login: 'Websturman'
         }
-        const component = create(<HeaderContainer data={data} isAuth={true}/>);
-        const instance = component.getInstance()
-        expect(instance.state.data.id).toBe('123');
-        expect(instance.state.isAuth).toBe(true);
+        const component = renderComponent(<Header data={data} isAuth={true}/>);
+        const instance = component.root;
+        expect(instance.findByType(Header).props.data.id).toBe('123');
+        expect(instance.findByType(Header).props.isAuth).toBe(true);
     });
 });

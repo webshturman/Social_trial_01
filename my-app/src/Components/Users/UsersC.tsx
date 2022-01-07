@@ -3,6 +3,7 @@ import {User} from "./User";
 import {Button, LinearProgress} from "@material-ui/core";
 import React, {FC} from "react";
 import {UserType} from "../../api/types/userType";
+import {Pagination} from "../Pagination/Pagination";
 
 
 
@@ -23,18 +24,20 @@ export const UsersC: FC<UsersCType> = ({
    users,
    loadingStatus
 }) => {
-    let pagesAmount = Math.ceil(totalCount / pageSize);
-    let pages = [];
-    for (let i = 1; i < pagesAmount && i < 21; i += 1) {
-        pages.push(i)
-    };
+    // let pagesAmount = Math.ceil(totalCount / pageSize);
+    // let pages = [];
+    // for (let i = 1; i < pagesAmount && i < 21; i += 1) {
+    //     pages.push(i)
+    // };
 
     return (
         <div className={s.usersContainer}>
-            {pages.map(pageNum => {
-                return <span key={pageNum} className={pageNum === currentPage ? s.selectedPage : s.pageNumber}
-                             onClick={(e) => getUsersForCurrentPage(pageNum)}>{pageNum}</span>
-            })}
+            <Pagination getItems={getUsersForCurrentPage} totalCount={totalCount}
+                        pageSize={pageSize} currentPage={currentPage}  portionSize={10}/>
+            {/*{pages.map(pageNum => {*/}
+            {/*    return <span key={pageNum} className={pageNum === currentPage ? s.selectedPage : s.pageNumber}*/}
+            {/*                 onClick={(e) => getUsersForCurrentPage(pageNum)}>{pageNum}</span>*/}
+            {/*})}*/}
             {loadingStatus && <LinearProgress/>}
 
             <div className={s.usersList}>

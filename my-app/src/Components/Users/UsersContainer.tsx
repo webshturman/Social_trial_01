@@ -10,13 +10,6 @@ import {setUsers, setUsersForCurrentPage} from "../redux/thunks/users-thunks";
 
 class UsersContainer extends React.Component<UsersCommonType, AppRootStateType> {
 
-    // constructor(props: UsersCommonType) {
-    //     super(props)
-    //     UsersAPI.getUsers()
-    //         .then((res) => {
-    //             this.props.getUsersFromApi(res.data.items)
-    //         })
-    // }
     componentDidMount() {
         this.props.setUsers(this.props.currentPage, this.props.pageSize)
     };
