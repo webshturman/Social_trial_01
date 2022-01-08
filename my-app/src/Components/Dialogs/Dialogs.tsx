@@ -12,7 +12,7 @@ import {sendMessageAC} from "../redux/actions/messages-actions";
 
 
 
-export const Dialogs = () => {
+export const Dialogs: FC = () => {
 
     const {senders, messages} = useSelector<AppRootStateType, DialogPageType>(state=> state.dialog);
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)

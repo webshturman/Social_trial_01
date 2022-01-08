@@ -1,19 +1,24 @@
-import React, {useEffect} from 'react'
+import React, {Suspense, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import './App.css';
 import {NavBar} from "./Components/NavBar/NavBar";
 import {Route, Routes} from "react-router-dom";
-import {Dialogs} from "./Components/Dialogs/Dialogs";
+// import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {AuthDataConnector} from "./Components/Header/HeaderContainer";
-import UsersContainer from "./Components/Users/UsersContainer";
-import {Login} from "./Components/Login/Login";
-import CircularProgress from '@material-ui/core/CircularProgress';
+// import UsersContainer from "./Components/Users/UsersContainer";
+// import {Login} from "./Components/Login/Login";
 import {AppRootStateType} from "./Components/redux/store";
 import {toBeAuthorized} from "./Components/redux/thunks/auth-thunks";
-import {Profile} from "./Components/Profile/Profile";
+// import {Profile} from "./Components/Profile/Profile";
+import {Loading} from "./utils/Loading";
+
+const Login = React.lazy(()=> import("./Components/Login/Login"));
+const Profile = React.lazy(()=> import("./Components/Profile/Profile"));
+const UsersContainer = React.lazy(()=> import("./Components/Users/UsersContainer"));
+const Dialogs = React.lazy(()=> import("./Components/Dialogs/Dialogs"));
 
 
 export const App = () => {
@@ -26,10 +31,7 @@ export const App = () => {
         dispatch(toBeAuthorized())
     }, [isAuth])
     if (!isInitialized) {
-        return <div
-            style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
-            <CircularProgress/>
-        </div>
+        return <Loading/>
     }
     return (
         <div className={'app-wrapper'}>
@@ -37,16 +39,18 @@ export const App = () => {
             <NavBar/>
             <div className={'content'}>
                 <Routes>
-                    <Route path={'/'} element={<Profile/>}/>
-                    <Route path={'/profile/:userId'} element={<Profile/>}/>
-                    <Route path={'/profile'} element={<Profile/>}/>
-                    <Route path={'/dialogs'} element={<Dialogs/>}/>
-                    <Route path={'/news'} element={<News/>}/>
-                    <Route path={'/music'} element={<Music/>}/>
-                    <Route path={'/settings'} element={<Settings/>}/>
-                    <Route path={'/users'} element={<UsersContainer/>}/>
-                    <Route path={'/login'} element={<Login/>}/>
-                    <Route path={'/Social_trial_01'} element={<Profile/>}/>
+                    <Suspense fallback={<Loading/>}>
+                        <Route path={'/'} element={<Profile/>}/>
+                        <Route path={'/profile/:userId'} element={<Profile/>}/>
+                        <Route path={'/profile'} element={<Profile/>}/>
+                        <Route path={'/dialogs'} element={<Dialogs/>}/>
+                        <Route path={'/news'} element={<News/>}/>
+                        <Route path={'/music'} element={<Music/>}/>
+                        <Route path={'/settings'} element={<Settings/>}/>
+                        <Route path={'/users'} element={<UsersContainer/>}/>
+                        <Route path={'/login'} element={<Login/>}/>
+                        <Route path={'/Social_trial_01'} element={<Profile/>}/>
+                    </Suspense>
                 </Routes>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {FC, ReactElement, useEffect} from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ProfileType} from "../../api/types/userType";
@@ -9,7 +9,7 @@ import {getProfileData} from "../redux/thunks/profile-thunks";
 import {LinearProgress} from "@material-ui/core";
 
 
-export const Profile = () => {
+const Profile = () => {
     const profile = useSelector<AppRootStateType, ProfileType>(state => state.profile.profile)
     const authorizedId = useSelector<AppRootStateType, string | null>(state => state.auth.id)
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
@@ -44,6 +44,6 @@ export const Profile = () => {
         </div>
     )
 }
-
+export default Profile as React.FC
 
 
