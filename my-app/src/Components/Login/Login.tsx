@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 import {useFormik} from "formik";
 import Grid from '@material-ui/core/Grid';
@@ -16,7 +16,7 @@ import {FormikErrorType} from "../../api/types/userType";
 import {toBeLoggedIn} from "../redux/thunks/auth-thunks";
 
 
-export const Login = () => {
+const Login = () => {
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     // @ts-ignore
     const errorMessage = useSelector<AppRootStateType, string | null>(state => state.auth.errorMessage)
@@ -95,4 +95,4 @@ export const Login = () => {
         </Grid>
     </Grid>
 };
-
+export default Login as FC

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {ProfileType} from "../../api/types/userType";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../redux/store";
-import {Profile} from "./Profile";
+import Profile from "./Profile";
 import {LinearProgress} from "@material-ui/core";
 import { useParams } from 'react-router-dom';
 import {getProfileData} from "../redux/thunks/profile-thunks";

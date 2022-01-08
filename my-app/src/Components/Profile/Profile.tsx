@@ -44,6 +44,6 @@ const Profile = () => {
         </div>
     )
 }
-export default Profile as React.FC
+export default Profile as FC
 
 

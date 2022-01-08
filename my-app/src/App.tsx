@@ -3,22 +3,18 @@ import {useDispatch, useSelector} from "react-redux";
 import './App.css';
 import {NavBar} from "./Components/NavBar/NavBar";
 import {Route, Routes} from "react-router-dom";
-// import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {AuthDataConnector} from "./Components/Header/HeaderContainer";
-// import UsersContainer from "./Components/Users/UsersContainer";
-// import {Login} from "./Components/Login/Login";
 import {AppRootStateType} from "./Components/redux/store";
 import {toBeAuthorized} from "./Components/redux/thunks/auth-thunks";
-// import {Profile} from "./Components/Profile/Profile";
 import {Loading} from "./utils/Loading";
 
-const Login = React.lazy(()=> import("./Components/Login/Login"));
-const Profile = React.lazy(()=> import("./Components/Profile/Profile"));
-const UsersContainer = React.lazy(()=> import("./Components/Users/UsersContainer"));
-const Dialogs = React.lazy(()=> import("./Components/Dialogs/Dialogs"));
+const Login = React.lazy(() => import("./Components/Login/Login"));
+const Profile = React.lazy(() => import("./Components/Profile/Profile"));
+const UsersContainer = React.lazy(() => import("./Components/Users/UsersContainer"));
+const Dialogs = React.lazy(() => import("./Components/Dialogs/Dialogs"));
 
 
 export const App = () => {
@@ -38,8 +34,8 @@ export const App = () => {
             <AuthDataConnector/>
             <NavBar/>
             <div className={'content'}>
-                <Routes>
-                    <Suspense fallback={<Loading/>}>
+                <Suspense fallback={<Loading/>}>
+                    <Routes>
                         <Route path={'/'} element={<Profile/>}/>
                         <Route path={'/profile/:userId'} element={<Profile/>}/>
                         <Route path={'/profile'} element={<Profile/>}/>
@@ -50,13 +46,12 @@ export const App = () => {
                         <Route path={'/users'} element={<UsersContainer/>}/>
                         <Route path={'/login'} element={<Login/>}/>
                         <Route path={'/Social_trial_01'} element={<Profile/>}/>
-                    </Suspense>
-                </Routes>
+                    </Routes>
+                </Suspense>
             </div>
         </div>
     );
 }
-
 
 
 //------------------------------------------------------------------------------------

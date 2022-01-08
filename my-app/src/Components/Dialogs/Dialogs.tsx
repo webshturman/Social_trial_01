@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, FC, useState} from "react";
 import s from './Dialogs.module.css'
 import {Message} from "./Messages/Message";
 import {Sender} from "./Senders/Sender";
@@ -11,8 +11,7 @@ import {DialogPageType} from "../redux/reducers/dialog-reducer";
 import {sendMessageAC} from "../redux/actions/messages-actions";
 
 
-
-export const Dialogs: FC = () => {
+const Dialogs = () => {
 
     const {senders, messages} = useSelector<AppRootStateType, DialogPageType>(state=> state.dialog);
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
@@ -55,4 +54,4 @@ export const Dialogs: FC = () => {
         </div>
     )
 }
-
+export default Dialogs as FC
