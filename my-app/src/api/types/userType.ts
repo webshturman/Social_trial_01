@@ -30,13 +30,13 @@ export type ProfileType={
     lookingForAJob: boolean,
     lookingForAJobDescription: string,
     fullName: string,
-    userId: number,
-    photos: {
+    userId: number | string,
+    photos: avatarPhotos
+}
+export type avatarPhotos ={
         small: null | string,
         large: null | string
-    }
 }
-
 export type ResponseType<T={}>={
     resultCode: number
     fieldsErrors: string[]

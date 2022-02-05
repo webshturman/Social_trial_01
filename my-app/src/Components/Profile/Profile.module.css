@@ -1,24 +1,44 @@
-
-
-
 .background{
     width: 100%;
     height: 200px;
     border-radius: 5px;
+    margin-bottom: 10px;
     background: url("https://mythemestore.com/beehive-preview/wp-content/uploads/buddypress/groups/4/cover-image/5e2cc36891950-bp-cover-image.jpg");
 }
-.info{
-    padding: 10px 0 0 0;
+.profileContainer{
     display: flex;
-
 }
-.info img{
-    width: 120px;
-    height: 120px;
-    margin: 0 10px 0 0;
-    border-radius:5px;
-    border: 2px solid black;
+.profileContainer img{
+    display: block;
+    box-sizing: border-box;
+    width: 140px;
+    height: 140px;
 }
 .name {
     font-weight: bold;
+}
+.statusInput:hover{
+    cursor: pointer;
+}
+.photoBlock{
+    position: relative;
+}
+.loadBlock{
+    position: absolute;
+    color: #f8f9fb;
+    background-color: rgba(0,0,0,.5);
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    height: 20px;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    transition: all .3s linear;
+}
+.photoBlock:hover .loadBlock{
+    opacity: 1;
+}
+.profileInfo{
+    margin: 0 0 0 10px;
 }

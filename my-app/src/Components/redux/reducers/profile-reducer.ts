@@ -19,25 +19,6 @@ const InitialState: ProfilePageType ={
             likeCounts: 20
         },
     ],
-    // profile: {aboutMe: "я круто чувак 1001%",
-    //     contacts: {
-    //         facebook: "facebook.com",
-    //         website: null,
-    //         vk: "vk.com/dimych",
-    //         twitter: "https://twitter.com/@sdf",
-    //         instagram: "instagra.com/sds",
-    //         youtube: null,
-    //         github: "github.com",
-    //         mainLink: null
-    //     },
-    //     "lookingForAJob": true,
-    //     "lookingForAJobDescription": "не ищу, а дурачусь",
-    //     "fullName": "samurai dimych",
-    //     "userId": 2,
-    //     "photos": {
-    //         "small": "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
-    //         "large": "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
-    //     }}
     // @ts-ignore
     profile:null,
     status:''
@@ -57,6 +38,8 @@ export const profileReducer =(state = InitialState,action:ProfileActionType):Pro
 
         case ACTIONS_TYPE.GET_PROFILE:
             return {...state, profile:action.profile}
+        case ACTIONS_TYPE.ADD_AVATAR:
+            return {...state, profile:{...state.profile, photos:action.photos}}
         case ACTIONS_TYPE.SET_USER_STATUS:
             return {...state, status:action.status}
         case ACTIONS_TYPE.CLEAR_PROFILE_DATA:

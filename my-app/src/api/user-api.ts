@@ -1,5 +1,5 @@
 import { instance } from "./instance"
-import {GetUsersType, ProfileType, UserType, ResponseType} from "./types/userType";
+import {GetUsersType, ProfileType, UserType, ResponseType, avatarPhotos} from "./types/userType";
 
 export const UsersAPI = {
     getUsers(page:number, count:number){
@@ -20,63 +20,13 @@ export const UsersAPI = {
     updateUserStatus(status:string){
         return instance.put<ResponseType>('profile/status', {status})
     },
+    loadUserPhoto(photo:any){
+        const formData = new FormData();
+        formData.append("image", photo);
+        return instance.put<ResponseType<{photos:avatarPhotos}>>('profile/photo', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
 }
-
-// type GetUsersType={
-//     items:UserType[]
-//     totalCount:number
-//     error: string
-// }
-// export type UserType={
-//     name: string,
-//     id: number
-//     uniqueUrlName: null
-//     photos: {
-//         small: null | string
-//         large: null | string
-//     }
-//     status: null
-//     followed: boolean
-// }
-//
-// export type ProfileType={
-//     aboutMe: string,
-//     contacts: {
-//         facebook: string,
-//         website: string | null,
-//         vk: string,
-//         twitter: string,
-//         instagram: string,
-//         youtube: string | null,
-//         github: string,
-//         mainLink: string | null,
-//     },
-//     lookingForAJob: boolean,
-//     lookingForAJobDescription: string,
-//     fullName: string,
-//     userId: number,
-//     photos: {
-//         small: null | string,
-//         large: null | string
-//     }
-// }
-//
-// export type ResponseType<T={}>={
-//     resultCode: number
-//     fieldsErrors: string[]
-//     messages: string[]
-//     data: T
-// }
-// export type AuthDataType={
-//     id:string | null
-//     email:string | null
-//     login:string | null
-// }
-// export type LoginDataType = FormikErrorType & {
-//     captcha?: boolean
-// }
-// export type FormikErrorType ={
-//     email: string
-//     password: string
-//     rememberMe: boolean
-// }

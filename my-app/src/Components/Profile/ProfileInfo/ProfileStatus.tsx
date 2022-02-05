@@ -2,17 +2,22 @@ import React, {ChangeEvent, useState} from "react";
 import {AppRootStateType} from "../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserStatusData} from "../../redux/thunks/profile-thunks";
+import s from "../Profile.module.css";
 
 
 export const ProfileStatus = () => {
     const status = useSelector<AppRootStateType, string>(state => state.profile.status)
+    const userId = useSelector<AppRootStateType, number |string>(state => state.profile.profile.userId)
+    const authId = useSelector<AppRootStateType, string | null>(state => state.auth.id)
     const dispatch = useDispatch()
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [value, setValue] = useState<string>(status)
 
    const activateEditMode=()=>{
-       setEditMode(true)
+        if(userId === authId){
+            setEditMode(true)
+        }
     }
     const deActivateEditMode=()=>{
         setEditMode(false)
@@ -21,8 +26,9 @@ export const ProfileStatus = () => {
     const setUpdatedStatus=(event:ChangeEvent<HTMLInputElement>)=>{
         setValue(event.currentTarget.value)
     }
+    const inputClassName = userId === authId ? s.statusInput : ''
         return (
-            <div>
+            <div className={inputClassName}>
                 {!editMode &&
                 <div>
                     <span onDoubleClick={activateEditMode}>{status ? status : 'no status'}</span>

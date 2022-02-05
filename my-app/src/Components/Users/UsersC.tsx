@@ -24,27 +24,20 @@ export const UsersC: FC<UsersCType> = ({
    users,
    loadingStatus
 }) => {
-    // let pagesAmount = Math.ceil(totalCount / pageSize);
-    // let pages = [];
-    // for (let i = 1; i < pagesAmount && i < 21; i += 1) {
-    //     pages.push(i)
-    // };
 
     return (
         <div className={s.usersContainer}>
             <Pagination getItems={getUsersForCurrentPage} totalCount={totalCount}
                         pageSize={pageSize} currentPage={currentPage}  portionSize={10}/>
-            {/*{pages.map(pageNum => {*/}
-            {/*    return <span key={pageNum} className={pageNum === currentPage ? s.selectedPage : s.pageNumber}*/}
-            {/*                 onClick={(e) => getUsersForCurrentPage(pageNum)}>{pageNum}</span>*/}
-            {/*})}*/}
             {loadingStatus && <LinearProgress/>}
 
             <div className={s.usersList}>
-                {users.map(user => <User id={user.id} name={user.name} photos={user.photos}
-                                               followed={user.followed} key={user.id}
-                                               status={user.status}
-                                               uniqueUrlName={user.uniqueUrlName}/>)}
+                {users.map(({id,name,photos,followed,status, uniqueUrlName}) => {
+                   return  <User id={id} name={name} photos={photos}
+                    followed={followed} key={id}
+                    status={status}
+                    uniqueUrlName={uniqueUrlName}/>
+                })}
             </div>
             <div className={s.showButton}>
                 <Button variant="contained" color="primary" size={'small'}>

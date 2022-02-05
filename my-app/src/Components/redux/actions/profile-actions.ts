@@ -1,9 +1,9 @@
-import {ProfileType} from "../../../api/types/userType";
+import {avatarPhotos, ProfileType} from "../../../api/types/userType";
 import {ACTIONS_TYPE} from "../../../enums/action-types";
 
 
 export type ProfileActionType = ReturnType<typeof addPostAC> | ReturnType<typeof getProfile> |
-    ReturnType<typeof setUserStatus> | ReturnType<typeof clearProfileData>
+    ReturnType<typeof setUserStatus> | ReturnType<typeof clearProfileData> | ReturnType<typeof saveUserAvatar>
 
 export const addPostAC = (newText:string) => {
     return {type:ACTIONS_TYPE.ADD_POST, newText} as const
@@ -16,4 +16,7 @@ export const setUserStatus = (status: string) => {
 }
 export const clearProfileData = () => {
     return {type:ACTIONS_TYPE.CLEAR_PROFILE_DATA} as const
+}
+export const saveUserAvatar = (photos:avatarPhotos) => {
+    return {type:ACTIONS_TYPE.ADD_AVATAR, photos} as const
 }

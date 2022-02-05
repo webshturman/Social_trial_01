@@ -1,6 +1,6 @@
 import {AppThunk} from "../store";
 import {UsersAPI} from "../../../api/user-api";
-import {getProfile, setUserStatus} from "../actions/profile-actions";
+import {getProfile, saveUserAvatar, setUserStatus} from "../actions/profile-actions";
 
 export const getProfileData =(userID: string):AppThunk=>async dispatch=>{
     try{
@@ -25,6 +25,18 @@ export const updateUserStatusData =(status:string):AppThunk=>async dispatch=>{
         const res = await UsersAPI.updateUserStatus(status)
         if(res.data.resultCode === 0){
             dispatch(setUserStatus(status))
+        }
+
+    } catch (e) {
+
+    }
+}
+export const addAvatar = (photo:any):AppThunk=>async dispatch=>{
+    try{
+        const res = await UsersAPI.loadUserPhoto(photo)
+        if(res.data.resultCode === 0){
+            dispatch(saveUserAvatar(res.data.data.photos))
+            console.log(res.data.data.photos)
         }
 
     } catch (e) {
