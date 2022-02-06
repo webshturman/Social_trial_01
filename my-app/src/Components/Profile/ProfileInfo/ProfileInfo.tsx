@@ -34,11 +34,13 @@ export const ProfileInfo = () => {
                     <div className={s.name}>{profile.fullName}</div>
                     <div>{profile.aboutMe}</div>
                     <ProfileStatus />
-                    {/*<input type="file" onChange={savePhoto}/>*/}
                 </div>
             </div>
-            <Modal open={open}>
-                <input type="file" onChange={savePhoto}/>
+            <Modal open={open} onClose={()=> setOpen(false)}>
+                <div>Download your new photo</div>
+                <div>
+                    <input type="file" onChange={savePhoto}/>
+                </div>
             </Modal>
         </div>
     )
