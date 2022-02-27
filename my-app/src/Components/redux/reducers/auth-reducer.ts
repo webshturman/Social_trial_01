@@ -26,5 +26,5 @@ export const authReducer = (state:InitialStateAuthType=InitialState, action:Auth
 
 export type InitialStateAuthType = AuthDataType & {
     isAuth:boolean
-    errorMessage?:string | null
+    errorMessage:string | null
 }

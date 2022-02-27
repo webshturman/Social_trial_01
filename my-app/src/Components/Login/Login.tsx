@@ -18,9 +18,8 @@ import {toBeLoggedIn} from "../redux/thunks/auth-thunks";
 
 const Login = () => {
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
-    // @ts-ignore
     const errorMessage = useSelector<AppRootStateType, string | null>(state => state.auth.errorMessage)
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -47,9 +46,7 @@ const Login = () => {
         },
 
     })
-    // if(!isAuth){
-    //     return <LinearProgress/>
-    // }
+
     if (isAuth) return <Navigate to={'/'}/>
 
     return <Grid container justifyContent={'center'}>
@@ -76,10 +73,6 @@ const Login = () => {
                                    {...formik.getFieldProps("password")}
                                    error={!!formik.errors.password && formik.touched.password}
                                    helperText={formik.touched.password ? formik.errors.password : ''}
-                            // name={"password"}
-                            // onChange={formik.handleChange}
-                            // value={formik.values.password}
-                            // onBlur={formik.handleBlur}
                         />
                         {errorMessage ? <div style={{color: "red"}}>{errorMessage}</div> : ''}
                         <FormControlLabel label={'Remember me'} control={
