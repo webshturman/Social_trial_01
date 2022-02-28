@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useEffect} from "react";
+import React, {FC, useEffect} from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ProfileType} from "../../api/types/userType";
@@ -12,6 +12,7 @@ import {LinearProgress} from "@material-ui/core";
 const Profile = () => {
     const profile = useSelector<AppRootStateType, ProfileType>(state => state.profile.profile)
     const authorizedId = useSelector<AppRootStateType, string | null>(state => state.auth.id)
+    const login = useSelector<AppRootStateType, string | null>(state => state.auth.login)
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     const dispatch = useDispatch()
     let {userId} = useParams()
@@ -26,7 +27,6 @@ const Profile = () => {
         if(!userId && authorizedId){
             dispatch(getProfileData(authorizedId))
         }
-
     },[isAuth,userId,authorizedId])
 
 
@@ -36,7 +36,7 @@ const Profile = () => {
     if(!profile){
         return <LinearProgress/>
     }
-
+    console.log(login)
     return (
         <div>
             <ProfileInfo/>

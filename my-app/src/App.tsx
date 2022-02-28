@@ -26,9 +26,11 @@ export const App = () => {
     useEffect(() => {
         dispatch(toBeAuthorized())
     }, [isAuth])
+
     if (!isInitialized) {
         return <Loading/>
     }
+
     return (
         <div className={'app-wrapper'}>
             <AuthDataConnector/>

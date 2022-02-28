@@ -3,7 +3,6 @@ import {ProfileActionType} from "../actions/profile-actions";
 import {ACTIONS_TYPE} from "../../../enums/action-types";
 import {ProfileType} from "../../../api/types/userType";
 
-
 const InitialState: ProfilePageType ={
     posts: [
         {
@@ -22,7 +21,6 @@ const InitialState: ProfilePageType ={
     // @ts-ignore
     profile:null,
     status:''
-
 }
 
 export const profileReducer =(state = InitialState,action:ProfileActionType):ProfilePageType=>{

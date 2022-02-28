@@ -32,7 +32,8 @@ export const UsersC: FC<UsersCType> = ({
             {loadingStatus && <LinearProgress/>}
 
             <div className={s.usersList}>
-                {users.map(({id,name,photos,followed,status, uniqueUrlName}) => {
+                {users.map(({id,name,photos,
+                                followed,status, uniqueUrlName}) => {
                    return  <User id={id} name={name} photos={photos}
                     followed={followed} key={id}
                     status={status}

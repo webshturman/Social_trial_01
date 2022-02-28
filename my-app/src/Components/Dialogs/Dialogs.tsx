@@ -5,7 +5,6 @@ import {Sender} from "./Senders/Sender";
 import {Button, Grid, TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../redux/store";
-
 import {Navigate} from "react-router-dom";
 import {DialogPageType} from "../redux/reducers/dialog-reducer";
 import {sendMessageAC} from "../redux/actions/messages-actions";
@@ -17,15 +16,13 @@ const Dialogs = () => {
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     const dispatch = useDispatch();
 
-    const EMPTY_STRING =''
-
-    const [inputValue, setInputValue] = useState(EMPTY_STRING);
+    const [inputValue, setInputValue] = useState('');
     const changeMessageText = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setInputValue(e.currentTarget.value)
     }
     const sendingMessage = () => {
         dispatch(sendMessageAC(inputValue))
-        setInputValue(EMPTY_STRING)
+        setInputValue('')
     }
     if (!isAuth) return <Navigate to={'/'}/>
     return (

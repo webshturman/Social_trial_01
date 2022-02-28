@@ -27,9 +27,4 @@ export type mapStateToPropsType = {
     data:AuthDataType
     isAuth:boolean
 }
-
-// export type mapDispatchPropsType = {
-//     toBeAuthorized:()=>void
-// }
 export type AuthDataCommonType = mapStateToPropsType
-// export type AuthDataCommonType = mapDispatchPropsType & mapStateToPropsType

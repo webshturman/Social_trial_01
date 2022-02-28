@@ -18,7 +18,7 @@ import {toBeLoggedIn} from "../redux/thunks/auth-thunks";
 
 const Login = () => {
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
-    const errorMessage = useSelector<AppRootStateType, string | null>(state => state.auth.errorMessage)
+    const errorMessage = useSelector<AppRootStateType, string | null>(state => state.auth.errorMessage as string)
     const dispatch = useDispatch()
 
     const formik = useFormik({
