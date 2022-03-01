@@ -1,11 +1,12 @@
 import {AppRootStateType} from "../redux/store";
 import {connect} from "react-redux";
 import React from "react";
-import {UsersC} from "./UsersC";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-import {UserType} from "../../api/types/userType";
 import {setUsers, setUsersForCurrentPage} from "../redux/thunks/users-thunks";
+import { Users } from "./Users";
+import { UserType } from "../../api/types/userType";
+
 
 
 class UsersContainer extends React.Component<UsersCommonType, AppRootStateType> {
@@ -19,7 +20,8 @@ class UsersContainer extends React.Component<UsersCommonType, AppRootStateType> 
     }
 
     render() {
-        return <UsersC getUsersForCurrentPage={this.getUsersForCurrentPage} users={this.props.users}
+
+        return <Users getUsersForCurrentPage={this.getUsersForCurrentPage} users={this.props.users}
                        totalCount={this.props.totalCount}
                        currentPage={this.props.currentPage} pageSize={this.props.pageSize}
                        loadingStatus={this.props.loadingStatus}/>
@@ -36,9 +38,6 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
         loadingStatus: state.users.loadingStatus
     }
 }
-// export const UsersConnector = withAuthRedirect(connect(mapStateToProps, {
-//     setUsersForCurrentPage,setUsers
-// })(UsersContainer))
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {setUsersForCurrentPage,setUsers}),

@@ -60,8 +60,8 @@ const Login = () => {
                             </a>
                         </p>
                         <p>or use common test account credentials:</p>
-                        <p>Email: free@samuraijs.com</p>
-                        <p>Password: free</p>
+                        <p>Email: kirill.zarya@inbox.ru</p>
+                        <p>Password: 123456</p>
                     </FormLabel>
                     <FormGroup>
                         <TextField label='Email' margin="normal"

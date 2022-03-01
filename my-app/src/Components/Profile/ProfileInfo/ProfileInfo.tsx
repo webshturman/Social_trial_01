@@ -10,8 +10,8 @@ import { Modal } from "../../Modal/Modal";
 
 
 export const ProfileInfo = () => {
-    const profile = useSelector<AppRootStateType, ProfileType>(state => state.profile.profile)
-    const userId = useSelector<AppRootStateType, number |string>(state => state.profile.profile.userId)
+    const profile = useSelector<AppRootStateType, ProfileType>(state => state.profile.profile as ProfileType)
+    const userId = useSelector<AppRootStateType, number | string>(state => state.profile.profile!.userId)
     const authId = useSelector<AppRootStateType, string | null>(state => state.auth.id)
     const [open, setOpen] = useState(false)
     const dispatch = useDispatch()

@@ -10,9 +10,8 @@ import {LinearProgress} from "@material-ui/core";
 
 
 const Profile = () => {
-    const profile = useSelector<AppRootStateType, ProfileType>(state => state.profile.profile)
+    const profile = useSelector<AppRootStateType, ProfileType | null>(state => state.profile.profile)
     const authorizedId = useSelector<AppRootStateType, string | null>(state => state.auth.id)
-    const login = useSelector<AppRootStateType, string | null>(state => state.auth.login)
     const isAuth = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     const dispatch = useDispatch()
     let {userId} = useParams()
@@ -36,7 +35,6 @@ const Profile = () => {
     if(!profile){
         return <LinearProgress/>
     }
-    console.log(login)
     return (
         <div>
             <ProfileInfo/>

@@ -28,7 +28,7 @@ export const updateUserStatusData =(status:string):AppThunk=>async dispatch=>{
         }
 
     } catch (e) {
-
+        console.log(e)
     }
 }
 export const addAvatar = (photo:any):AppThunk=>async dispatch=>{

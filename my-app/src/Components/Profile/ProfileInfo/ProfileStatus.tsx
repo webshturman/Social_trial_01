@@ -7,7 +7,7 @@ import s from "../Profile.module.css";
 
 export const ProfileStatus = () => {
     const status = useSelector<AppRootStateType, string>(state => state.profile.status)
-    const userId = useSelector<AppRootStateType, number |string>(state => state.profile.profile.userId)
+    const userId = useSelector<AppRootStateType, number |string>(state => state.profile.profile!.userId)
     const authId = useSelector<AppRootStateType, string | null>(state => state.auth.id)
     const dispatch = useDispatch()
 

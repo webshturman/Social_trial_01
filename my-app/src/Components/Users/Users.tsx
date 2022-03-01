@@ -7,7 +7,7 @@ import {Pagination} from "../Pagination/Pagination";
 
 
 
-type UsersCType = {
+type UsersType = {
     getUsersForCurrentPage: (pageNumber: number) => void
     totalCount: number
     pageSize: number
@@ -16,7 +16,7 @@ type UsersCType = {
     loadingStatus:boolean
 }
 
-export const UsersC: FC<UsersCType> = ({
+export const Users: FC<UsersType> = ({
    getUsersForCurrentPage,
    totalCount,
    pageSize,

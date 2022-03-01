@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 
 import s from './Users.module.css'
+import bear from '../../assets/images/bear.png'
 import {Button} from "@material-ui/core";
 import {NavLink} from 'react-router-dom';
 import {useDispatch} from "react-redux";
@@ -15,7 +16,7 @@ export const User: FC<UserType> = (
     }) => {
 
     const dispatch = useDispatch()
-    const photo = photos.small !==null  ? photos.small : 'https://mythemestore.com/beehive-preview/wp-content/uploads/rtMedia/users/4/2020/05/woman-wearing-white-knitted-dress-709790-2-450x320.jpg'
+    const photo = photos.small !==null  ? photos.small : bear
 
     const setToFollow =()=> {
         dispatch(toFollow(id))

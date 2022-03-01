@@ -3,7 +3,7 @@ import {ProfileActionType} from "../actions/profile-actions";
 import {ACTIONS_TYPE} from "../../../enums/action-types";
 import {ProfileType} from "../../../api/types/userType";
 
-const InitialState: ProfilePageType ={
+const InitialState: ProfilePageType = {
     posts: [
         {
             id: v1(),
@@ -18,12 +18,11 @@ const InitialState: ProfilePageType ={
             likeCounts: 20
         },
     ],
-    // @ts-ignore
-    profile:null,
-    status:''
+    profile: null,
+    status: ''
 }
 
-export const profileReducer =(state = InitialState,action:ProfileActionType):ProfilePageType=>{
+export const profileReducer = (state = InitialState, action: ProfileActionType): ProfilePageType => {
     switch (action.type) {
         case ACTIONS_TYPE.ADD_POST:
             let newPost: PostType = {
@@ -32,14 +31,14 @@ export const profileReducer =(state = InitialState,action:ProfileActionType):Pro
                 message: action.newText,
                 likeCounts: 0
             };
-            return {...state, posts:[...state.posts,newPost]}
+            return {...state, posts: [...state.posts, newPost]}
 
         case ACTIONS_TYPE.GET_PROFILE:
-            return {...state, profile:action.profile}
+            return {...state, profile: action.profile}
         case ACTIONS_TYPE.ADD_AVATAR:
-            return {...state, profile:{...state.profile, photos:action.photos}}
+            return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
         case ACTIONS_TYPE.SET_USER_STATUS:
-            return {...state, status:action.status}
+            return {...state, status: action.status}
         case ACTIONS_TYPE.CLEAR_PROFILE_DATA:
             return InitialState
         default:
@@ -50,8 +49,8 @@ export const profileReducer =(state = InitialState,action:ProfileActionType):Pro
 
 export type ProfilePageType = {
     posts: Array<PostType>
-    profile: ProfileType
-    status:string
+    profile: null | ProfileType
+    status: string
 }
 export type PostType = {
     id: string
